@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{130493A8-23C0-4D62-AD2F-EA60884A827D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoldenTicket.QueryAnalyzer.Service</RootNamespace>
+    <AssemblyName>GoldenTicket.QueryAnalyzer.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Externals\Castle\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\Externals\Castle\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Externals\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse">
+      <HintPath>..\Externals\Parse\Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse.NetFx45">
+      <HintPath>..\Externals\Parse\Parse.NetFx45.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalyzerService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AnalyzerService.Designer.cs">
+      <DependentUpon>AnalyzerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration\DIMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
+      <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
+      <Name>GoldenTicket.Command.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
+      <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
+      <Name>GoldenTicket.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
+      <Project>{ab74ecd2-d29d-4806-811a-4afa3e8b1803}</Project>
+      <Name>GoldenTicket.DataProxy.Parse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Interceptor\GoldenTicket.Interceptor.csproj">
+      <Project>{cbf443a0-9cf0-45c5-9f2f-a18602e022f4}</Project>
+      <Name>GoldenTicket.Interceptor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Model\GoldenTicket.Model.csproj">
+      <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
+      <Name>GoldenTicket.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.QueryAnalyzer.ArtistCopier\GoldenTicket.QueryAnalyzer.ArtistCopier.csproj">
+      <Project>{5046b1e6-2dcd-4c96-b7ae-e8eba4b667f1}</Project>
+      <Name>GoldenTicket.QueryAnalyzer.ArtistCopier</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.QueryAnalyzer.Queue\GoldenTicket.QueryAnalyzer.Queue.csproj">
+      <Project>{eb69ef97-d47e-43e2-9f43-6a06c6002372}</Project>
+      <Name>GoldenTicket.QueryAnalyzer.Queue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Queue.Interfaces\GoldenTicket.Queue.Interfaces.csproj">
+      <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
+      <Name>GoldenTicket.Queue.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Scheduler\GoldenTicket.Scheduler.csproj">
+      <Project>{a55c324e-e602-4cca-936f-e77ae86a277a}</Project>
+      <Name>GoldenTicket.Scheduler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
