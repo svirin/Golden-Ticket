@@ -3,9 +3,9 @@ using GoldenTicket.Model;
 
 namespace GoldenTicket.QueryAnalyzer.ArtistCopier
 {
-    public class CommandFactory : ICommandFactory<UserRequest>
+    public class CommandFactory : ICommandFactory<Request>
     {
-        public ICommand<UserRequest> CreateCommand()
+        public ICommand<Request> CreateCommand()
         {
             return new Command();
         }

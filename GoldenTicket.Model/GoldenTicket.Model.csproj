@@ -42,7 +42,7 @@
     <Compile Include="Artist.cs" />
     <Compile Include="SuggestionResult.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="UserRequest.cs" />
+    <Compile Include="Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchResult.cs" />
   </ItemGroup>

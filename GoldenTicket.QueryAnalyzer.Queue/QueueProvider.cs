@@ -8,11 +8,11 @@ using Parse;
 
 namespace GoldenTicket.QueryAnalyzer.Queue
 {
-    public class QueueProvider : IQueueProvider<UserRequest>
+    public class QueueProvider : IQueueProvider<Request>
     {
-        public void Enqueue(ConcurrentQueue<UserRequest> queue)
+        public void Enqueue(ConcurrentQueue<Request> queue)
         {
-            var dataProvider = DI.Factory.GetInstance<IUserRequestDataProvider<ParseObject>>();
+            var dataProvider = DI.Factory.GetInstance<IRequestDataProvider<ParseObject>>();
 
             var requests = dataProvider.GetActiveRequests().ToList();
 

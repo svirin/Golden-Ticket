@@ -1,23 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using GoldenTicket.Command.Interfaces;
+﻿using GoldenTicket.Command.Interfaces;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Model;
 using Parse;
 
 namespace GoldenTicket.QueryAnalyzer.ArtistCopier
 {
-    public class Command : ICommand<UserRequest>
+    public class Command : ICommand<Request>
     {
-        private IArtistDataProvider<ParseObject> _artistDataProvider;
-
-        public void ExecuteCommand(UserRequest item)
+        public void ExecuteCommand(Request item)
         {
-            _artistDataProvider = DI.Factory.GetInstance<IArtistDataProvider<ParseObject>>();
+            var artistDataProvider = DI.Factory.GetInstance<IArtistDataProvider<ParseObject>>();
+            var requestDataProvider = DI.Factory.GetInstance<IRequestDataProvider<ParseObject>>();
 
-            var isArtistExisted = _artistDataProvider.IsExisted(item.Artist);
+            var isArtistExisted = artistDataProvider.IsExisted(item.Artist);
 
             if (!isArtistExisted)
             {
@@ -27,7 +22,9 @@ namespace GoldenTicket.QueryAnalyzer.ArtistCopier
                     Name = item.Artist,
                 };
 
-                _artistDataProvider.Save(artist);
+                artistDataProvider.Save(artist);
+
+                requestDataProvider.ActivateRequest(item);
             }
         }
     }

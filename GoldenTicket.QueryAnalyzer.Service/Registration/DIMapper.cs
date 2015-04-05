@@ -34,13 +34,13 @@ namespace GoldenTicket.QueryAnalyzer.Service
                 Component.For<IUserDataProvider<ParseObject>>()
                          .ImplementedBy<UserDataProvider>(),
 
-                Component.For<IUserRequestDataProvider<ParseObject>>()
-                         .ImplementedBy<UserRequestDataProvider>(),
+                Component.For<IRequestDataProvider<ParseObject>>()
+                         .ImplementedBy<RequestDataProvider>(),
 
-                Component.For<ICommandFactory<UserRequest>>()
+                Component.For<ICommandFactory<Request>>()
                          .ImplementedBy<CommandFactory>(),
 
-                Component.For<IQueueProvider<UserRequest>>()
+                Component.For<IQueueProvider<Request>>()
                          .ImplementedBy<QueueProvider>(),
 
             };

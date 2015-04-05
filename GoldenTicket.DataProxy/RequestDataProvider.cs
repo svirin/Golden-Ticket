@@ -9,21 +9,21 @@ using Parse;
 
 namespace GoldenTicket.DataProxy.Parse
 {
-    public class UserRequestDataProvider : IUserRequestDataProvider<ParseObject>
+    public class RequestDataProvider : IRequestDataProvider<ParseObject>
     {
         #region Get
 
-        public UserRequest Get(string objectId)
+        public Request Get(string objectId)
         {
-            var query = from concert in ParseObject.GetQuery("UserRequest")
+            var query = from concert in ParseObject.GetQuery("Request")
                         where concert.Get<string>("objectId") == objectId
                         select concert;
 
             var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult().ToList();
+            var resultSet = task.Result.ToList();
 
             if (!resultSet.Any())
-                throw new DataException(string.Format("UserRequest with id #{0} does not existed", objectId));
+                throw new DataException(string.Format("Request with id #{0} does not existed", objectId));
 
             var item = Convert(resultSet.Single());
 
@@ -32,14 +32,14 @@ namespace GoldenTicket.DataProxy.Parse
 
 
         /// <summary>Select only active requests</summary>
-        public IEnumerable<UserRequest> GetActiveRequests()
+        public IEnumerable<Request> GetActivatedRequests()
         {
-            var query = from request in ParseObject.GetQuery("UserRequest")
-                        where request.Get<Boolean>("IsActive")
+            var query = from request in ParseObject.GetQuery("Request")
+                        where request.Get<Boolean>("IsActivated")
                         select request;
 
             var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult();
+            var resultSet = task.Result;
 
             var requestsSet = resultSet.Select(Convert);
             return requestsSet;
@@ -49,7 +49,7 @@ namespace GoldenTicket.DataProxy.Parse
 
         #region Save
 
-        public void Save(UserRequest item)
+        public void Save(Request item)
         {
             var prsConcert = Convert(item);
 
@@ -60,7 +60,18 @@ namespace GoldenTicket.DataProxy.Parse
             LogFactory.Log.InfoFormat("User request #{0} successfuly saved", item.UniqueID);
         }
 
-        public void SaveMany(IEnumerable<UserRequest> items)
+        public void ActivateRequest(Request item)
+        {
+            var prsConcert = ParseObject.CreateWithoutData("Request", item.UniqueID);
+
+            prsConcert["IsActivated"] = true;
+
+            prsConcert.SaveAsync().Wait();
+
+            LogFactory.Log.InfoFormat("User request #{0} successfuly saved", item.UniqueID);
+        }
+
+        public void SaveMany(IEnumerable<Request> items)
         {
             foreach (var item in items)
             {
@@ -72,16 +83,16 @@ namespace GoldenTicket.DataProxy.Parse
 
         #region IsExist
 
-        public bool IsExisted(UserRequest identity)
+        public bool IsExisted(Request identity)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         #endregion
 
         #region Convert
 
-        public ParseObject Convert(UserRequest item)
+        public ParseObject Convert(Request item)
         {
             var request = new ParseObject("Request");
 
@@ -93,14 +104,14 @@ namespace GoldenTicket.DataProxy.Parse
             request["City"] = item.City;
             request["DateStart"] = item.DateStart;
             request["DateEnd"] = item.DateEnd;
-            request["IsNotActive"] = item.IsNotActive;
+            request["IsActivated"] = item.IsActivated;
             
             return request;
         }
 
-        public UserRequest Convert(ParseObject item)
+        public Request Convert(ParseObject item)
         {
-            var userRequest = new UserRequest
+            var request = new Request
             {
                 UniqueID = item.ObjectId,
                 DateCreated = item.Get<DateTime>("DateCreated"),
@@ -110,11 +121,11 @@ namespace GoldenTicket.DataProxy.Parse
                 Country = item.Get<string>("Country"),
                 DateStart = item.Get<DateTime>("DateStart"),
                 DateEnd = item.Get<DateTime>("DateEnd"),
-                IsNotActive = item.Get<Boolean>("IsNotActive")
+                IsActivated = item.Get<Boolean>("IsActivated")
                 
             };
 
-            return userRequest;
+            return request;
         }
 
         #endregion

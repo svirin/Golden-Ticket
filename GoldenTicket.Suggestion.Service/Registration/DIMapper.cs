@@ -34,8 +34,8 @@ namespace GoldenTicket.Suggestion.Service.Registration
                 Component.For<IUserDataProvider<ParseObject>>()
                          .ImplementedBy<UserDataProvider>(),
 
-                Component.For<IUserRequestDataProvider<ParseObject>>()
-                         .ImplementedBy<UserRequestDataProvider>(),
+                Component.For<IRequestDataProvider<ParseObject>>()
+                         .ImplementedBy<RequestDataProvider>(),
 
                 Component.For<ICommandFactory<User>>()
                          .ImplementedBy<CommandFactory>(),

@@ -49,7 +49,7 @@
     <Compile Include="SuggestionResultDataProvider.cs" />
     <Compile Include="UserDataProvider.cs" />
     <Compile Include="SearchResultDataProvider.cs" />
-    <Compile Include="UserRequestDataProvider.cs" />
+    <Compile Include="RequestDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

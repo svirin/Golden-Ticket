@@ -15,7 +15,7 @@ namespace GoldenTicket.QueryAnalyzer.Service
     /// </summary>
     public partial class AnalyzerService : ServiceBase
     {
-        private Scheduler.Scheduler<UserRequest> _scheduler;
+        private Scheduler.Scheduler<Request> _scheduler;
 
         public AnalyzerService()
         {
@@ -27,7 +27,7 @@ namespace GoldenTicket.QueryAnalyzer.Service
             // Initialize the Parse client with your Application ID and .NET Key found on
             ParseClient.Initialize("g6S8spz8mWaRmettl8puz8sMDkgL6enP8pJJ4oTK", "T5gykzQsG1KavfYBlC42iswiopIwcfHEgvTBCXfl");
 
-            _scheduler = new Scheduler.Scheduler<UserRequest>();
+            _scheduler = new Scheduler.Scheduler<Request>();
 
             _scheduler.Start();
         }

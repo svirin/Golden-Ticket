@@ -19,7 +19,7 @@ namespace GoldenTicket.DataProxy.Parse
                         select concert;
 
             var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult().ToList();
+            var resultSet = task.Result.ToList();
 
             if (!resultSet.Any())
                 throw new DataException(string.Format("Artist with id #{0} does not existed", objectId));
@@ -37,7 +37,7 @@ namespace GoldenTicket.DataProxy.Parse
                         select artist;
 
             var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult();
+            var resultSet = task.Result;
 
             var artistsList = resultSet.Select(Convert);
             return artistsList;
@@ -79,7 +79,7 @@ namespace GoldenTicket.DataProxy.Parse
                         select artist;
 
             var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult();
+            var resultSet = task.Result;
 
             return resultSet.Any();
         }
@@ -91,7 +91,7 @@ namespace GoldenTicket.DataProxy.Parse
                         select artist;
 
             var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult();
+            var resultSet = task.Result;
 
             return resultSet.Any();
         }

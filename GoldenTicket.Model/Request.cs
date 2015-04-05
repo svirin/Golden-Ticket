@@ -2,7 +2,7 @@
 
 namespace GoldenTicket.Model
 {
-    public class UserRequest
+    public class Request
     {
         public string UniqueID { get; set; }
         public DateTime DateCreated { get; set; }
@@ -13,6 +13,6 @@ namespace GoldenTicket.Model
         public string Username { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-        public bool IsNotActive { get; set; }
+        public bool IsActivated { get; set; }
     }
 }

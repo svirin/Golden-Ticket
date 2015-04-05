@@ -22,9 +22,11 @@ namespace GoldenTicket.Creator
 
             //CheckIsExisted();
 
-            ExecuteStandartSearch();
+            //ExecuteStandartSearch();
 
             //LoadSingleArtistById();
+
+            ActivateRequest();
 
             Console.ReadKey();
         }
@@ -32,7 +34,7 @@ namespace GoldenTicket.Creator
         /// <summary>Imitation user search from mobile phone</summary>
         private static void ExecuteStandartSearch()
         {
-            var requestProvider = DI.Factory.GetInstance<IUserRequestDataProvider<ParseObject>>();
+            var requestProvider = DI.Factory.GetInstance<IRequestDataProvider<ParseObject>>();
             var searchResultProvider = DI.Factory.GetInstance<ISearchResultDataProvider<ParseObject>>();
             var suggestionProvider = DI.Factory.GetInstance<ISuggestionResultDataProvider<ParseObject>>();
 
@@ -41,7 +43,7 @@ namespace GoldenTicket.Creator
                 Username = "vasiliy"
             };
 
-            var request = new UserRequest
+            var request = new Request
             {
                 DateCreated = DateTime.Now,
                 Genre = "Genre Ask",
@@ -127,11 +129,11 @@ namespace GoldenTicket.Creator
 
         private static void CreateRequests()
         {
-            var requests = new List<UserRequest>();
+            var requests = new List<Request>();
 
             for (var index = 0; index < 100; index++)
             {
-                requests.Add(new UserRequest
+                requests.Add(new Request
                 {
                     DateCreated = DateTime.Now,
                     Genre = "Genre " + index,
@@ -143,14 +145,25 @@ namespace GoldenTicket.Creator
                 });
             }
 
-            var requestProvider = DI.Factory.GetInstance<IUserRequestDataProvider<ParseObject>>();
+            var requestProvider = DI.Factory.GetInstance<IRequestDataProvider<ParseObject>>();
             requestProvider.SaveMany(requests);
         }
+
+        private static void ActivateRequest()
+        {
+            var request = new Request();
+            request.UniqueID = "KEaMbzOV3O";
+                
+            var requestProvider = DI.Factory.GetInstance<IRequestDataProvider<ParseObject>>();
+
+            requestProvider.ActivateRequest(request);
+        }
+        
 
         private static void LoadSingleArtistById()
         {
             var requestProvider = DI.Factory.GetInstance<IArtistDataProvider<ParseObject>>();
-            var artist = requestProvider.Get("hWHzsQ9irX");
+            var artist = requestProvider.Get("0re9qBR3p6");
             Console.WriteLine("Artist : ID {0}, Name {1}, Abstract {2}, ImageURL {3}", artist.UniqueID, artist.Name, artist.Abstract, artist.ImageURL);
         }
     }
