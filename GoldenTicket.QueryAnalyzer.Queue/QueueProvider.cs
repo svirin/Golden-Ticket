@@ -14,7 +14,7 @@ namespace GoldenTicket.QueryAnalyzer.Queue
         {
             var dataProvider = DI.Factory.GetInstance<IRequestDataProvider<ParseObject>>();
 
-            var requests = dataProvider.GetActiveRequests().ToList();
+            var requests = dataProvider.GetActivatedRequests().ToList();
 
             Parallel.ForEach(requests,
                 new ParallelOptions { MaxDegreeOfParallelism = 5 },

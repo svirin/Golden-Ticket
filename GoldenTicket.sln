@@ -69,6 +69,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QueryAnalyzer", "QueryAnaly
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldenTicket.QueryAnalyzer.Queue", "GoldenTicket.QueryAnalyzer.Queue\GoldenTicket.QueryAnalyzer.Queue.csproj", "{EB69EF97-D47E-43E2-9F43-6A06C6002372}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldenTicket.Watchdog.Service", "GoldenTicket.Watchdog.Service\GoldenTicket.Watchdog.Service.csproj", "{083F26FC-AA37-4F90-929A-501416598C5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -151,6 +153,10 @@ Global
 		{EB69EF97-D47E-43E2-9F43-6A06C6002372}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB69EF97-D47E-43E2-9F43-6A06C6002372}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB69EF97-D47E-43E2-9F43-6A06C6002372}.Release|Any CPU.Build.0 = Release|Any CPU
+		{083F26FC-AA37-4F90-929A-501416598C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{083F26FC-AA37-4F90-929A-501416598C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{083F26FC-AA37-4F90-929A-501416598C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{083F26FC-AA37-4F90-929A-501416598C5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -181,5 +187,6 @@ Global
 		{5046B1E6-2DCD-4C96-B7AE-E8EBA4B667F1} = {B56D514B-4AEE-4F36-8818-E099B44F68E4}
 		{62A1698A-C4F3-457B-9069-7BE36D02E804} = {6503B696-9568-4DEB-AAF4-1DC0004ECD50}
 		{EB69EF97-D47E-43E2-9F43-6A06C6002372} = {62A1698A-C4F3-457B-9069-7BE36D02E804}
+		{083F26FC-AA37-4F90-929A-501416598C5D} = {FE5DC2A4-DFDF-4266-9CE2-3404D1316485}
 	EndGlobalSection
 EndGlobal
