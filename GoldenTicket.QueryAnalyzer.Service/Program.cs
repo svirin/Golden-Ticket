@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GoldenTicket.QueryAnalyzer.Service
@@ -14,6 +15,8 @@ namespace GoldenTicket.QueryAnalyzer.Service
         /// </summary>
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             // Initialize windows service
             var service = new AnalyzerService();
 
@@ -29,6 +32,12 @@ namespace GoldenTicket.QueryAnalyzer.Service
                 var servicesToRun = new ServiceBase[] { service };
                 ServiceBase.Run(servicesToRun);
             }
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // Log
+            Thread.Sleep(TimeSpan.FromSeconds(1));
         }
     }
 }

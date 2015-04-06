@@ -16,7 +16,7 @@ namespace GoldenTicket.QueryAnalyzer.ArtistCopier
 
             if (!isArtistExisted)
             {
-                // TODO : Need get artist's details from any enrich service 
+                //TODO : Need get artist's details from any enrich service 
                 var artist = new Artist
                 {
                     Name = item.Artist,

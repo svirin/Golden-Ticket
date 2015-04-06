@@ -1,4 +1,6 @@
-﻿using System.ServiceProcess;
+﻿using System;
+using System.ServiceProcess;
+using System.Threading;
 
 namespace GoldenTicket.Crawler.Service
 {
@@ -9,6 +11,8 @@ namespace GoldenTicket.Crawler.Service
         /// </summary>
         static void Main(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             // Initialize windows service
             var service = new CrawlerService();
 
@@ -24,6 +28,13 @@ namespace GoldenTicket.Crawler.Service
                 var servicesToRun = new ServiceBase[] { service };
                 ServiceBase.Run(servicesToRun);
             }
+        }
+
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // Log
+            Thread.Sleep(TimeSpan.FromSeconds(1));
         }
     }
 }
