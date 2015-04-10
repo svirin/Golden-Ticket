@@ -43,6 +43,9 @@ namespace GoldenTicket.Creator.Registration
                 Component.For<IQueueProvider<Artist>>()
                          .ImplementedBy<QueueProvider>(),
 
+                Component.For<ISettingsDataProvider<ParseObject>>()
+                         .ImplementedBy<SettingsDataProvider>(),
+
             };
 
             return registrations;

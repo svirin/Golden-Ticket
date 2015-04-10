@@ -20,13 +20,14 @@ namespace GoldenTicket.DataProxy.Parse
                         where concert.Get<string>("objectId") == objectId
                         select concert;
 
-            var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult().ToList();
+            var result = query.FindAsync().Result;
 
-            if (!resultSet.Any())
+            var resultList = result as IList<ParseObject> ?? result.ToList();
+
+            if (!resultList.Any())
                 throw new DataException(string.Format("Concert with id #{0} does not existed", objectId));
 
-            var item = Convert(resultSet.Single());
+            var item = Convert(resultList.Single());
 
             return item;
         }
@@ -37,10 +38,10 @@ namespace GoldenTicket.DataProxy.Parse
                         where suggestionResult.Get<Boolean>("SuggestionResult")
                         select suggestionResult;
 
-            var task = query.FindAsync();
-            var resultSet = task.GetAwaiter().GetResult();
+            var result = query.FindAsync().Result;
 
-            var suggestionResultSet = resultSet.Select(Convert);
+            var suggestionResultSet = result.Select(Convert);
+
             return suggestionResultSet;
         }
 

@@ -7,5 +7,7 @@ namespace GoldenTicket.Data.Interfaces
          where TRawEntity : class
     {
         IEnumerable<SuggestionResult> GetSuggestionResultByUser(User user);
+        bool IsExisted(SuggestionResult item);
+        void SaveMany(IEnumerable<SuggestionResult> items);
     }
 }

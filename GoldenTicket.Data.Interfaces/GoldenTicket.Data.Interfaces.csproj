@@ -39,12 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISettingsDataProvider.cs" />
     <Compile Include="IArtistDataProvider.cs" />
     <Compile Include="ISearchResultDataProvider.cs" />
     <Compile Include="ISuggestionResultDataProvider.cs" />
     <Compile Include="IUserDataProvider.cs" />
     <Compile Include="IDataProvider.cs" />
-    <Compile Include="IUserRequestDataProvider.cs" />
+    <Compile Include="IRequestDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -79,6 +79,10 @@
       <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
       <Name>GoldenTicket.Command.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
+      <Project>{439caf15-3f8a-4e4a-9040-fc49eeff38a6}</Project>
+      <Name>GoldenTicket.ConfigurationManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GoldenTicket.Crawler.Queue\GoldenTicket.Crawler.Queue.csproj">
       <Project>{6bd0c2e9-386c-4e34-9630-48bf4d989f9c}</Project>
       <Name>GoldenTicket.Crawler.Queue</Name>

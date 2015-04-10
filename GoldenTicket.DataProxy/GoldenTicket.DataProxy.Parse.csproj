@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtistDataProvider.cs" />
+    <Compile Include="SettingsDataProvider.cs" />
     <Compile Include="SuggestionResultDataProvider.cs" />
     <Compile Include="UserDataProvider.cs" />
     <Compile Include="SearchResultDataProvider.cs" />

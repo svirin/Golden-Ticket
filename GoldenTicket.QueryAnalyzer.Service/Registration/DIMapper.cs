@@ -37,6 +37,9 @@ namespace GoldenTicket.QueryAnalyzer.Service
                 Component.For<IRequestDataProvider<ParseObject>>()
                          .ImplementedBy<RequestDataProvider>(),
 
+                Component.For<ISettingsDataProvider<ParseObject>>()
+                         .ImplementedBy<SettingsDataProvider>(),
+
                 Component.For<ICommandFactory<Request>>()
                          .ImplementedBy<CommandFactory>(),
 

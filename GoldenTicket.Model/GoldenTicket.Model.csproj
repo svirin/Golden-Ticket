@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artist.cs" />
+    <Compile Include="SettingsItem.cs" />
     <Compile Include="SuggestionResult.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Request.cs" />

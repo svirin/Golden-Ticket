@@ -8,5 +8,7 @@ namespace GoldenTicket.Data.Interfaces
     {
         IEnumerable<Request> GetActivatedRequests();
         void ActivateRequest(Request item);
+        void Save(Request item);
+        void SaveMany(IEnumerable<Request> items);
     }
 }

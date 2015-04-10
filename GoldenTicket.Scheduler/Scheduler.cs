@@ -11,6 +11,10 @@ namespace GoldenTicket.Scheduler
     public class Scheduler<TEntity>
         where TEntity : class ,new()
     {
+        private readonly int _period;
+        private readonly int _dueTime;
+        private readonly int _workersAmount;
+
         // Declare timer
         private readonly Timer _tmrTicker;
         private readonly IQueueProvider<TEntity> _queueProvider;
@@ -22,8 +26,12 @@ namespace GoldenTicket.Scheduler
         /// Scheduler constructor. 
         /// Implements strategy design pattern.
         /// </summary>
-        public Scheduler()
+        public Scheduler(int workersAmount, int dueTime, int period)
         {
+            _period = period;
+            _dueTime = dueTime;
+            _workersAmount = workersAmount;
+
             // Declare providers
             _queueProvider = DI.Factory.GetInstance<IQueueProvider<TEntity>>();
             _commandFactory = DI.Factory.GetInstance<ICommandFactory<TEntity>>();
@@ -39,9 +47,9 @@ namespace GoldenTicket.Scheduler
         /// </summary>
         public void Start()
         {
-            _tmrTicker.Change(60000, 1000);
+            _tmrTicker.Change(_dueTime, _period);
 
-            for (var i = 0; i < 5; i++)
+            for (var workerIndex = 0; workerIndex < _workersAmount; workerIndex++)
             {
                 var worker = new Worker<TEntity>(_commandFactory, _bufferQueue);
                 
@@ -69,7 +77,7 @@ namespace GoldenTicket.Scheduler
                 finally
                 {
                     // Resume timer
-                    _tmrTicker.Change(60000, 1000);
+                    _tmrTicker.Change(_dueTime, _period);
                 }
             }
         }

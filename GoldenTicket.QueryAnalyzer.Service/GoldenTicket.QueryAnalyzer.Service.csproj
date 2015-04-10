@@ -78,6 +78,10 @@
       <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
       <Name>GoldenTicket.Command.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
+      <Project>{439caf15-3f8a-4e4a-9040-fc49eeff38a6}</Project>
+      <Name>GoldenTicket.ConfigurationManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
       <Name>GoldenTicket.Data.Interfaces</Name>

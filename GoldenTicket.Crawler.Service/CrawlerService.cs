@@ -1,5 +1,7 @@
 ﻿using System.ServiceProcess;
 using System.Threading;
+using Castle.Core.Resource;
+using GoldenTicket.ConfigurationManager;
 using GoldenTicket.Model;
 using Parse;
 
@@ -20,10 +22,13 @@ namespace GoldenTicket.Crawler.Service
             //LogFactory.Log.Info("Start crawler service");
 
             // Initialize the Parse client with your Application ID and .NET Key found on
-            ParseClient.Initialize("g6S8spz8mWaRmettl8puz8sMDkgL6enP8pJJ4oTK", "T5gykzQsG1KavfYBlC42iswiopIwcfHEgvTBCXfl");
+            ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
-            _scheduler = new Scheduler.Scheduler<Artist>();
+            int dueTo = Config.Settings.CreawlerDueTo;
+            int period = Config.Settings.CreawlerPeriod;
+            int workerAmounts = Config.Settings.CreawlerWorkersAmount;
 
+            _scheduler = new Scheduler.Scheduler<Artist>(workerAmounts, dueTo, period);
             _scheduler.Start();
         }
 

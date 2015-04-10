@@ -1,4 +1,5 @@
-﻿using GoldenTicket.Model;
+﻿using GoldenTicket.ConfigurationManager;
+using GoldenTicket.Model;
 using Parse;
 using System.ServiceProcess;
 using System.Threading;
@@ -25,10 +26,13 @@ namespace GoldenTicket.QueryAnalyzer.Service
         protected override void OnStart(string[] args)
         {
             // Initialize the Parse client with your Application ID and .NET Key found on
-            ParseClient.Initialize("g6S8spz8mWaRmettl8puz8sMDkgL6enP8pJJ4oTK", "T5gykzQsG1KavfYBlC42iswiopIwcfHEgvTBCXfl");
+            ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
-            _scheduler = new Scheduler.Scheduler<Request>();
-
+            int dueTo = Config.Settings.QueryAnalizerDueTo;
+            int period = Config.Settings.QueryAnalizerPeriod;
+            int workerAmounts = Config.Settings.QueryAnalizerWorkersAmount;
+          
+            _scheduler = new Scheduler.Scheduler<Request>(workerAmounts, dueTo, period);
             _scheduler.Start();
         }
 

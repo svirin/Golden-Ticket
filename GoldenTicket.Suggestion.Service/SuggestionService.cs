@@ -1,6 +1,8 @@
 ﻿using System.ServiceProcess;
 using System.Threading;
+using GoldenTicket.ConfigurationManager;
 using GoldenTicket.Model;
+using Parse;
 
 namespace GoldenTicket.Suggestion.Service
 {
@@ -15,8 +17,14 @@ namespace GoldenTicket.Suggestion.Service
 
         protected override void OnStart(string[] args)
         {
-            _scheduler = new Scheduler.Scheduler<User>();
+            // Initialize the Parse client with your Application ID and .NET Key found on
+            ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
+            int dueTo = Config.Settings.SuggestionDueTo;
+            int period = Config.Settings.SuggestionPeriod;
+            int workerAmounts = Config.Settings.SuggestionWorkersAmount;
+
+            _scheduler = new Scheduler.Scheduler<User>(workerAmounts, dueTo, period);
             _scheduler.Start();
         }
 

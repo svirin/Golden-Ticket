@@ -35,7 +35,7 @@ namespace GoldenTicket.DataProxy.Parse
         public IEnumerable<Request> GetActivatedRequests()
         {
             var query = from request in ParseObject.GetQuery("Request")
-                        where request.Get<Boolean>("IsActivated")
+                        where request.Get<Boolean>("IsActivated") == false
                         select request;
 
             var task = query.FindAsync();

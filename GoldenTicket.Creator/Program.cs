@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GoldenTicket.ConfigurationManager;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.DataProxy.Parse;
 using GoldenTicket.Model;
@@ -12,11 +13,11 @@ namespace GoldenTicket.Creator
         private static void Main(string[] args)
         {
             // Initialize the Parse client with your Application ID and .NET Key found on
-            ParseClient.Initialize("g6S8spz8mWaRmettl8puz8sMDkgL6enP8pJJ4oTK", "T5gykzQsG1KavfYBlC42iswiopIwcfHEgvTBCXfl");
+            ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
             //CreateArtists();
 
-            //CreateRequests();
+            CreateRequests();
 
             //LoadArtistsIdents();
 
@@ -26,9 +27,31 @@ namespace GoldenTicket.Creator
 
             //LoadSingleArtistById();
 
-            ActivateRequest();
+            //ActivateRequest();
+
+            //int period = ConfigurationManager.Config.Settings.QueryAnalizerPeriod;
+            //string period = ConfigurationManager.Config.Settings.QueryAnalizerPeriod;
+            //string period = ConfigurationManager.Config.Settings.QueryAnalizerPeriod1;
+
+            //SaveNewSettingsItem();
 
             Console.ReadKey();
+        }
+
+        private static void SaveNewSettingsItem()
+        {
+            var settingsItem = new SettingsItem
+                {
+                    Name = "QueryAnalizerPeriod",
+                    Block = "QueryAnalizer",
+                    IsOnline = true,
+                    Type = typeof(int).ToString(),
+                    Value = "60000"
+                };
+            
+
+            var settingsProvider = DI.Factory.GetInstance<ISettingsDataProvider<ParseObject>>();
+            settingsProvider.Save(settingsItem);
         }
 
         /// <summary>Imitation user search from mobile phone</summary>
@@ -141,7 +164,8 @@ namespace GoldenTicket.Creator
                     Country = "Country " + index,
                     City = "City " + index,
                     DateStart = DateTime.Now,
-                    DateEnd = DateTime.Now
+                    DateEnd = DateTime.Now,
+                    IsActivated = false
                 });
             }
 
