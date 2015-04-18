@@ -11,11 +11,11 @@ namespace GoldenTicket.Crawler.Test
 {
     public class Command : ICommand<Artist>
     {
-        private ISearchResultDataProvider<ParseObject> _resultDataProvider;
+        private IConcertDataProvider<ParseObject> _resultDataProvider;
 
         public void ExecuteCommand(Artist item)
         {
-            _resultDataProvider = DI.Factory.GetInstance<ISearchResultDataProvider<ParseObject>>();
+            _resultDataProvider = DI.Factory.GetInstance<IConcertDataProvider<ParseObject>>();
 
             // Execute crawling
             var crawleResults = CrawleByRequest(item);
@@ -26,18 +26,18 @@ namespace GoldenTicket.Crawler.Test
             _resultDataProvider.SaveMany(uniqueResults);
         }
 
-        private IEnumerable<SearchResult> GetUniqueResults(IEnumerable<SearchResult> crawleResults)
+        private IEnumerable<Concert> GetUniqueResults(IEnumerable<Concert> crawleResults)
         {
             var uniqueResults = crawleResults.Where(crawleResult => !_resultDataProvider.IsExisted(crawleResult));
 
             return uniqueResults;
         }
 
-        public IEnumerable<SearchResult> CrawleByRequest(Artist item)
+        public IEnumerable<Concert> CrawleByRequest(Artist item)
         {
-            var responses = new List<SearchResult>
+            var responses = new List<Concert>
             {
-                new SearchResult 
+                new Concert 
                 {
                     ConcertName = "Gala #" + item.UniqueID,
                     Abstract = "Gala #" + item.UniqueID,

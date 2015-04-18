@@ -22,14 +22,14 @@ namespace GoldenTicket.Suggestion.Service.Registration
                          .ImplementedBy<Interceptor.Interceptor>()
                          .Named("GoldenTicketLogger"),
 
-                Component.For<ISearchResultDataProvider<ParseObject>>()
-                         .ImplementedBy<SearchResultDataProvider>(),
+                Component.For<IConcertDataProvider<ParseObject>>()
+                         .ImplementedBy<ConcertDataProvider>(),
 
                 Component.For<IArtistDataProvider<ParseObject>>()
                          .ImplementedBy<ArtistDataProvider>(),
 
-                Component.For<ISuggestionResultDataProvider<ParseObject>>()
-                         .ImplementedBy<SuggestionResultDataProvider>(),
+                Component.For<ISuggestDataProvider<ParseObject>>()
+                         .ImplementedBy<SuggestDataProvider>(),
 
                 Component.For<IUserDataProvider<ParseObject>>()
                          .ImplementedBy<UserDataProvider>(),

@@ -5,6 +5,7 @@ using System.Linq;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Model;
+using GoldenTicket.Utilities;
 using Parse;
 
 namespace GoldenTicket.DataProxy.Parse
@@ -35,7 +36,7 @@ namespace GoldenTicket.DataProxy.Parse
         public IEnumerable<Request> GetActivatedRequests()
         {
             var query = from request in ParseObject.GetQuery("Request")
-                        where request.Get<Boolean>("IsActivated") == false
+                        where request.Get<int>("Status") == (int)RequestStatus.NotActivated
                         select request;
 
             var task = query.FindAsync();
@@ -64,7 +65,7 @@ namespace GoldenTicket.DataProxy.Parse
         {
             var prsConcert = ParseObject.CreateWithoutData("Request", item.UniqueID);
 
-            prsConcert["IsActivated"] = true;
+            prsConcert["Status"] = (int)RequestStatus.Activated;
 
             prsConcert.SaveAsync().Wait();
 
@@ -97,14 +98,14 @@ namespace GoldenTicket.DataProxy.Parse
             var request = new ParseObject("Request");
 
             request["DateCreated"] = item.DateCreated;
-            request["Genre"] = item.Genre;
-            request["Username"] = item.Username;
-            request["Artist"] = item.Artist;
-            request["Country"] = item.Country;
-            request["City"] = item.City;
+            request["Genre"] = item.Genre.ToCustomLower();
+            request["Username"] = item.Username.ToCustomLower();
+            request["Artist"] = item.Artist.ToCustomLower();
+            request["Country"] = item.Country.ToCustomLower();
+            request["City"] = item.City.ToCustomLower();
             request["DateStart"] = item.DateStart;
             request["DateEnd"] = item.DateEnd;
-            request["IsActivated"] = item.IsActivated;
+            request["Status"] = (int)item.Status;
             
             return request;
         }
@@ -121,7 +122,7 @@ namespace GoldenTicket.DataProxy.Parse
                 Country = item.Get<string>("Country"),
                 DateStart = item.Get<DateTime>("DateStart"),
                 DateEnd = item.Get<DateTime>("DateEnd"),
-                IsActivated = item.Get<Boolean>("IsActivated")
+                Status = (RequestStatus)item.Get<int>("Status")
                 
             };
 

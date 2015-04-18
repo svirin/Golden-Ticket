@@ -6,6 +6,7 @@ using System.Threading;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Model;
+using GoldenTicket.Utilities;
 using Parse;
 
 namespace GoldenTicket.DataProxy.Parse
@@ -68,11 +69,11 @@ namespace GoldenTicket.DataProxy.Parse
         {
             var settingsItem = new ParseObject("SettingsItem");
 
-            settingsItem["Name"] = item.Name;
+            settingsItem["Name"] = item.Name.ToCustomLower();
             settingsItem["IsOnline"] = item.IsOnline;
-            settingsItem["Block"] = item.Block;
-            settingsItem["Type"] = item.Type;
-            settingsItem["Value"] = item.Value;
+            settingsItem["Block"] = item.Block.ToCustomLower();
+            settingsItem["Type"] = item.Type.ToCustomLower();
+            settingsItem["Value"] = item.Value.ToCustomLower();
 
             return settingsItem;
         }

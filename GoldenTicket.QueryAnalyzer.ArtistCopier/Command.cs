@@ -23,9 +23,9 @@ namespace GoldenTicket.QueryAnalyzer.ArtistCopier
                 };
 
                 artistDataProvider.Save(artist);
-
-                requestDataProvider.ActivateRequest(item);
             }
+
+            requestDataProvider.ActivateRequest(item);
         }
     }
 }

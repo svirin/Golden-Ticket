@@ -4,6 +4,7 @@ using System.Linq;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Model;
+using GoldenTicket.Utilities;
 using Parse;
 
 namespace GoldenTicket.DataProxy.Parse
@@ -104,9 +105,9 @@ namespace GoldenTicket.DataProxy.Parse
         {
             var artist = new ParseObject("Artist");
 
-            artist["Name"] = item.Name;
-            artist["Abstract"] = item.Abstract;
-            artist["ImageURL"] = item.ImageURL;
+            artist["Name"] = item.Name.ToCustomLower();
+            artist["Abstract"] = item.Abstract.ToCustomLower();
+            artist["ImageURL"] = item.ImageURL.ToCustomLower();
            
             return artist;
         }

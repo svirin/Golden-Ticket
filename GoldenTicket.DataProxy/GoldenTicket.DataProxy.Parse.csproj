@@ -46,10 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtistDataProvider.cs" />
+    <Compile Include="LikeDataProvider.cs" />
+    <Compile Include="JoinDataProvider.cs" />
     <Compile Include="SettingsDataProvider.cs" />
-    <Compile Include="SuggestionResultDataProvider.cs" />
+    <Compile Include="SuggestDataProvider.cs" />
     <Compile Include="UserDataProvider.cs" />
-    <Compile Include="SearchResultDataProvider.cs" />
+    <Compile Include="ConcertDataProvider.cs" />
     <Compile Include="RequestDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -58,6 +60,10 @@
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
       <Name>GoldenTicket.Data.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.DI\GoldenTicket.DI.csproj">
+      <Project>{b7487b46-0862-470f-b3ed-df3bd5e1cee5}</Project>
+      <Name>GoldenTicket.DI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GoldenTicket.Logger.Log4Net\GoldenTicket.Logger.Log4Net.csproj">
       <Project>{5B57F179-71FA-4E1C-94D3-3148BAF3D8F3}</Project>
       <Name>GoldenTicket.Logger.Log4Net</Name>
@@ -65,6 +71,10 @@
     <ProjectReference Include="..\GoldenTicket.Model\GoldenTicket.Model.csproj">
       <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
       <Name>GoldenTicket.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Utilities\GoldenTicket.Utilities.csproj">
+      <Project>{4769e21b-d5d0-4ce6-9f83-e37525a77484}</Project>
+      <Name>GoldenTicket.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

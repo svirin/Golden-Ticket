@@ -5,12 +5,12 @@ using GoldenTicket.Command.Interfaces;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.DataProxy.Parse;
 using GoldenTicket.Model;
-using GoldenTicket.Queue.Interfaces;
-using Parse;
 using GoldenTicket.QueryAnalyzer.ArtistCopier;
 using GoldenTicket.QueryAnalyzer.Queue;
+using GoldenTicket.Queue.Interfaces;
+using Parse;
 
-namespace GoldenTicket.QueryAnalyzer.Service
+namespace GoldenTicket.QueryAnalyzer.Service.Registration
 {
     public static class DIMapper
     {
@@ -22,14 +22,14 @@ namespace GoldenTicket.QueryAnalyzer.Service
                          .ImplementedBy<Interceptor.Interceptor>()
                          .Named("GoldenTicketLogger"),
 
-                Component.For<ISearchResultDataProvider<ParseObject>>()
-                         .ImplementedBy<SearchResultDataProvider>(),
+                Component.For<IConcertDataProvider<ParseObject>>()
+                         .ImplementedBy<ConcertDataProvider>(),
 
                 Component.For<IArtistDataProvider<ParseObject>>()
                          .ImplementedBy<ArtistDataProvider>(),
 
-                Component.For<ISuggestionResultDataProvider<ParseObject>>()
-                         .ImplementedBy<SuggestionResultDataProvider>(),
+                Component.For<ISuggestDataProvider<ParseObject>>()
+                         .ImplementedBy<SuggestDataProvider>(),
 
                 Component.For<IUserDataProvider<ParseObject>>()
                          .ImplementedBy<UserDataProvider>(),

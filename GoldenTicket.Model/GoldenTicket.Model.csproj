@@ -40,12 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Artist.cs" />
+    <Compile Include="Like.cs" />
+    <Compile Include="Join.cs" />
     <Compile Include="SettingsItem.cs" />
-    <Compile Include="SuggestionResult.cs" />
+    <Compile Include="Suggest.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchResult.cs" />
+    <Compile Include="Concert.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

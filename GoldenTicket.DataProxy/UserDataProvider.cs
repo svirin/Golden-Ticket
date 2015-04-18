@@ -5,6 +5,7 @@ using System.Threading;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Model;
+using GoldenTicket.Utilities;
 using Parse;
 
 namespace GoldenTicket.DataProxy.Parse
@@ -78,7 +79,7 @@ namespace GoldenTicket.DataProxy.Parse
         {
             var user = new ParseObject("User");
 
-            user["Username"] = item.Username;
+            user["Username"] = item.Username.ToCustomLower();
 
             return user;
         }

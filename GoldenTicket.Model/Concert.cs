@@ -2,7 +2,7 @@
 
 namespace GoldenTicket.Model
 {
-    public  class SearchResult
+    public  class Concert
     {
         public string UniqueID { get; set; }
 
@@ -18,6 +18,8 @@ namespace GoldenTicket.Model
 
         public string Country { get; set; }
 
+        public string City { get; set; }
+
         public string Arena { get; set; }
 
         public string Description { get; set; }
@@ -27,5 +29,14 @@ namespace GoldenTicket.Model
         public DateTime DateEnd { get; set; }
 
         public string CrawlerName { get; set; }
+
+        public string CrawlerURL { get; set; }
+
+        public string ImageURL { get; set; }
+
+        public string NormalPrice { get; set; }
+
+        public string DiscountPrice { get; set; }
+
     }
 }

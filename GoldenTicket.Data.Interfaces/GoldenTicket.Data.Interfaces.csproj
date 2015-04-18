@@ -39,10 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILikeDataProvider.cs" />
+    <Compile Include="IJoinDataProvider.cs" />
     <Compile Include="ISettingsDataProvider.cs" />
     <Compile Include="IArtistDataProvider.cs" />
-    <Compile Include="ISearchResultDataProvider.cs" />
-    <Compile Include="ISuggestionResultDataProvider.cs" />
+    <Compile Include="IConcertDataProvider.cs" />
+    <Compile Include="ISuggestDataProvider.cs" />
     <Compile Include="IUserDataProvider.cs" />
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IRequestDataProvider.cs" />

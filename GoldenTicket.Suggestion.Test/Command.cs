@@ -9,11 +9,11 @@ namespace GoldenTicket.Suggestion.Test
 {
     public class Command : ICommand<User>
     {
-        private ISuggestionResultDataProvider<ParseObject> _suggestDataProvider;
+        private ISuggestDataProvider<ParseObject> _suggestDataProvider;
 
         public void ExecuteCommand(User item)
         {
-            _suggestDataProvider = DI.Factory.GetInstance<ISuggestionResultDataProvider<ParseObject>>();
+            _suggestDataProvider = DI.Factory.GetInstance<ISuggestDataProvider<ParseObject>>();
 
             var suggestResults = ExecuteSuggestionOperation(item);
 
@@ -22,9 +22,9 @@ namespace GoldenTicket.Suggestion.Test
             _suggestDataProvider.SaveMany(suggestUniqueResults);
         }
 
-        private IEnumerable<SuggestionResult> RemoveDuplicates(IEnumerable<SuggestionResult> suggestResults)
+        private IEnumerable<Suggest> RemoveDuplicates(IEnumerable<Suggest> suggestResults)
         {
-            var suggestions = new List<SuggestionResult>();
+            var suggestions = new List<Suggest>();
 
             foreach (var suggestItem in suggestResults)
             { 
@@ -39,21 +39,15 @@ namespace GoldenTicket.Suggestion.Test
             return suggestions;
         }
 
-        private IEnumerable<SuggestionResult> ExecuteSuggestionOperation(User item)
+        private IEnumerable<Suggest> ExecuteSuggestionOperation(User item)
         {
             // TODO : Here must be implemented suggesting algorythm
-            var suggestions = new List<SuggestionResult>
+            var suggestions = new List<Suggest>
             {
-                new SuggestionResult 
+                new Suggest 
                 {
-                    Abstract = "Abstract #1",
-                    Arena = "Arena1",
-                    Artist = "Artist",
-                    ConcertName = "ConcertName",
-                    Country = "Country",
-                    Description = "Description",
-                    Genre = "Genre",
-                    UserName = "UserName"
+                    Username = "Unknown",
+                    ConcertId = "ssss"
                 }
             };
 
