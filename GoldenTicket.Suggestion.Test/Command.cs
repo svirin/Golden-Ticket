@@ -7,12 +7,13 @@ using Parse;
 
 namespace GoldenTicket.Suggestion.Test
 {
-    public class Command : ICommand<User>
+    public class Command : ICommand<UserRecientBlock>
     {
         private ISuggestDataProvider<ParseObject> _suggestDataProvider;
 
-        public void ExecuteCommand(User item)
+        public void ExecuteCommand(UserRecientBlock item)
         {
+            /*
             _suggestDataProvider = DI.Factory.GetInstance<ISuggestDataProvider<ParseObject>>();
 
             var suggestResults = ExecuteSuggestionOperation(item);
@@ -20,6 +21,7 @@ namespace GoldenTicket.Suggestion.Test
             var suggestUniqueResults = RemoveDuplicates(suggestResults);
 
             _suggestDataProvider.SaveMany(suggestUniqueResults);
+             * */
         }
 
         private IEnumerable<Suggest> RemoveDuplicates(IEnumerable<Suggest> suggestResults)

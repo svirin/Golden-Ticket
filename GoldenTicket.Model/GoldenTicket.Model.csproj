@@ -43,7 +43,9 @@
     <Compile Include="Like.cs" />
     <Compile Include="Join.cs" />
     <Compile Include="SettingsItem.cs" />
+    <Compile Include="Recient.cs" />
     <Compile Include="Suggest.cs" />
+    <Compile Include="UserRecientBlock.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

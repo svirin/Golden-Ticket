@@ -40,12 +40,14 @@ namespace GoldenTicket.Suggestion.Service.Registration
                 Component.For<ISettingsDataProvider<ParseObject>>()
                          .ImplementedBy<SettingsDataProvider>(),
 
-                Component.For<ICommandFactory<User>>()
+                Component.For<ICommandFactory<UserRecientBlock>>()
                          .ImplementedBy<CommandFactory>(),
 
-                Component.For<IQueueProvider<User>>()
+                Component.For<IQueueProvider<UserRecientBlock>>()
                          .ImplementedBy<QueueProvider>(),
 
+                Component.For<IRecientDataProvider<ParseObject>>()
+                         .ImplementedBy<RecientDataProvider>(),
             };
 
             return registrations;

@@ -3,9 +3,9 @@ using GoldenTicket.Model;
 
 namespace GoldenTicket.Suggestion.Test
 {
-    public class CommandFactory : ICommandFactory<User>
+    public class CommandFactory : ICommandFactory<UserRecientBlock>
     {
-        public ICommand<User> CreateCommand()
+        public ICommand<UserRecientBlock> CreateCommand()
         {
             return new Command();
         }

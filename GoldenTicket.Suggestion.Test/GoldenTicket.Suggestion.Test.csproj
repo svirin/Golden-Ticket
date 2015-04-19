@@ -79,6 +79,10 @@
       <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
       <Name>GoldenTicket.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Suggestion.Apriori\GoldenTicket.Suggestion.Apriori.csproj">
+      <Project>{cab3c0d6-f764-4f5c-b833-21a6dd886c46}</Project>
+      <Name>GoldenTicket.Suggestion.Apriori</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

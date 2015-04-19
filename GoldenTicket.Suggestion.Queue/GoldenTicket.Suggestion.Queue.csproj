@@ -73,6 +73,10 @@
       <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
       <Name>GoldenTicket.Queue.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Utilities\GoldenTicket.Utilities.csproj">
+      <Project>{4769e21b-d5d0-4ce6-9f83-e37525a77484}</Project>
+      <Name>GoldenTicket.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

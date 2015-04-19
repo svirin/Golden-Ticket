@@ -1,25 +1,52 @@
-﻿using System.Collections.Concurrent;
-using System.Linq;
-using System.Threading.Tasks;
-using GoldenTicket.ConfigurationManager;
-using GoldenTicket.Data.Interfaces;
+﻿using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Model;
 using GoldenTicket.Queue.Interfaces;
+using GoldenTicket.Utilities;
 using Parse;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace GoldenTicket.Suggestion.Queue
 {
-    public class QueueProvider : IQueueProvider<User>
+    public class QueueProvider : IQueueProvider<UserRecientBlock>
     {
-        public void Enqueue(ConcurrentQueue<User> queue)
+        public void Enqueue(ConcurrentQueue<UserRecientBlock> queue)
         {
-            var dataProvider = DI.Factory.GetInstance<IUserDataProvider<ParseObject>>();
-            var users = dataProvider.GetAcctualUsers().ToList();
-            int maxParallelTasks = Config.Settings.SuggestionQueueMaxParallelism;
+            var recientItems = LoadRecients();
 
-            Parallel.ForEach(users,
-                new ParallelOptions { MaxDegreeOfParallelism = maxParallelTasks },
-                queue.Enqueue);
+            var userRecientBlock = LoadPivotedRecients(recientItems);
+
+            queue.Enqueue(userRecientBlock);
+        }
+
+        private IEnumerable<Recient> LoadRecients() { 
+        
+            var dataProvider = DI.Factory.GetInstance<IRecientDataProvider<ParseObject>>();
+
+            var recients = dataProvider.GetRecientItems().ToList();
+
+            return recients;
+        }
+
+        private UserRecientBlock LoadPivotedRecients(IEnumerable<Recient> recientItems) 
+        {
+            var userRecientBlock = new UserRecientBlock { VisitedUsers = new List<User>() };
+        
+            var distinctUsers = recientItems.DistinctBy(recient=>recient.Username).Select(recient=>recient.Username).ToList();
+
+            foreach (var username in distinctUsers)
+            {
+                userRecientBlock.VisitedUsers.Add(
+                    new User
+                    {
+                        Username = username,
+                        VisitedConcertsIds = recientItems.Where(item => item.Username == username)
+                                                     .Select(item => item.ConcertId).ToList()
+                    });
+            }
+
+            return userRecientBlock;
         }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="LikeDataProvider.cs" />
     <Compile Include="JoinDataProvider.cs" />
     <Compile Include="SettingsDataProvider.cs" />
+    <Compile Include="RecientDataProvider.cs" />
     <Compile Include="SuggestDataProvider.cs" />
     <Compile Include="UserDataProvider.cs" />
     <Compile Include="ConcertDataProvider.cs" />
