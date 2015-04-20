@@ -15,7 +15,7 @@ namespace GoldenTicket.Crawler.Queue
         {
             var dataProvider = DI.Factory.GetInstance<IArtistDataProvider<ParseObject>>();
             var artists = dataProvider.GetAcctualArtists().ToList();
-            int maxParallelTasks = Config.Settings.CrawlerQueueMaxParallelism;
+            int maxParallelTasks = Config.CurrentContext.AppSettings.CrawlerQueueMaxParallelism;
 
             Parallel.ForEach(artists,
                 new ParallelOptions { MaxDegreeOfParallelism = maxParallelTasks },

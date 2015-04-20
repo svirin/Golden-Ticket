@@ -8,14 +8,21 @@ using Parse;
 
 namespace GoldenTicket.ConfigurationManager
 {
-    public static class Config
+    public class Config
     {
 
-        private static ElementProxy _currentSettings;
+        private static Config _config = new Config();
 
-        public static dynamic Settings
+        public static Config CurrentContext
         {
-            get { return _currentSettings ?? (_currentSettings = new ElementProxy()); }
+            get{ return _config; }
+        }
+
+        private static SettingsRetrieverProxy _retrieverSettings;
+
+        public dynamic AppSettings
+        {
+            get { return _retrieverSettings ?? (_retrieverSettings = new SettingsRetrieverProxy()); }
         }
 
         public static string ApplicationId
@@ -34,12 +41,12 @@ namespace GoldenTicket.ConfigurationManager
             }
         }
 
-        private class ElementProxy : DynamicObject
+        private class SettingsRetrieverProxy : DynamicObject
         {
             private readonly ISettingsDataProvider<ParseObject> _provider;
             private readonly IDictionary<string, SettingsItem> _dictionary;
 
-            public ElementProxy()
+            public SettingsRetrieverProxy()
             {
                 _provider = DI.Factory.GetInstance<ISettingsDataProvider<ParseObject>>();
                 _dictionary = _provider.GetOfflineSettings();
@@ -49,14 +56,10 @@ namespace GoldenTicket.ConfigurationManager
             {
                 var settingsResult = CheckOffline(binder.Name) ?? CheckOnline(binder.Name);
 
-                var typeOfSetting = Type.GetType(settingsResult.Type);
+                var convertor = new SettingsConvertorProxy(settingsResult.Value);
 
-                if (typeOfSetting == null)
+                result = convertor;
 
-                    throw new FormatException(string.Format("Type of propety {0} not declared", binder.Name));
-
-                result = Convert.ChangeType(settingsResult.Value, typeOfSetting);
-                
                 return true;
             }
 
@@ -76,6 +79,25 @@ namespace GoldenTicket.ConfigurationManager
                 var settingsItem = _provider.GetSettingsItemByName(name);
 
                 return settingsItem;
+            }
+        }
+
+        private class SettingsConvertorProxy : DynamicObject
+        {
+            private object _result;
+
+            public SettingsConvertorProxy(object result)
+            {
+                _result = result;
+            }
+
+            public override bool TryConvert(ConvertBinder binder, out object result)
+            {
+                result = binder.ReturnType.BaseType == typeof(Enum) ? 
+                    Enum.Parse(binder.ReturnType, _result.ToString()):
+                    Convert.ChangeType(_result, binder.ReturnType);
+
+ 	             return true;
             }
         }
     }

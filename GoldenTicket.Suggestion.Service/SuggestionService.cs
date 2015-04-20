@@ -20,9 +20,9 @@ namespace GoldenTicket.Suggestion.Service
             // Initialize the Parse client with your Application ID and .NET Key found on
             ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
-            int dueTo = Config.Settings.SuggestionDueTo;
-            int period = Config.Settings.SuggestionPeriod;
-            int workerAmounts = Config.Settings.SuggestionWorkersAmount;
+            int dueTo = Config.CurrentContext.AppSettings.SuggestionDueTo;
+            int period = Config.CurrentContext.AppSettings.SuggestionPeriod;
+            int workerAmounts = Config.CurrentContext.AppSettings.SuggestionWorkersAmount;
 
             _scheduler = new Scheduler.Scheduler<UserRecientBlock>(workerAmounts, dueTo, period);
             _scheduler.Start();

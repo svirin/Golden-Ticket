@@ -28,9 +28,9 @@ namespace GoldenTicket.QueryAnalyzer.Service
             // Initialize the Parse client with your Application ID and .NET Key found on
             ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
-            int dueTo = Config.Settings.QueryAnalizerDueTo;
-            int period = Config.Settings.QueryAnalizerPeriod;
-            int workerAmounts = Config.Settings.QueryAnalizerWorkersAmount;
+            int dueTo = Config.CurrentContext.AppSettings.QueryAnalizerDueTo;
+            int period = Config.CurrentContext.AppSettings.QueryAnalizerPeriod;
+            int workerAmounts = Config.CurrentContext.AppSettings.QueryAnalizerWorkersAmount;
           
             _scheduler = new Scheduler.Scheduler<Request>(workerAmounts, dueTo, period);
             _scheduler.Start();

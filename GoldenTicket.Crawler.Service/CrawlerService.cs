@@ -24,9 +24,9 @@ namespace GoldenTicket.Crawler.Service
             // Initialize the Parse client with your Application ID and .NET Key found on
             ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
-            int dueTo = Config.Settings.CreawlerDueTo;
-            int period = Config.Settings.CreawlerPeriod;
-            int workerAmounts = Config.Settings.CreawlerWorkersAmount;
+            int dueTo = Config.CurrentContext.AppSettings.CreawlerDueTo;
+            int period = Config.CurrentContext.AppSettings.CreawlerPeriod;
+            int workerAmounts = Config.CurrentContext.AppSettings.CreawlerWorkersAmount;
 
             _scheduler = new Scheduler.Scheduler<Artist>(workerAmounts, dueTo, period);
             _scheduler.Start();
