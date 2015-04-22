@@ -2,15 +2,15 @@
 using Castle.DynamicProxy;
 using Castle.MicroKernel.Registration;
 using GoldenTicket.Command.Interfaces;
-using GoldenTicket.Suggestion.AprioriCommander;
-using GoldenTicket.Suggestion.Queue;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.DataProxy.Parse;
 using GoldenTicket.Model;
 using GoldenTicket.Queue.Interfaces;
+using GoldenTicket.Suggestion.AprioriCommander;
+using GoldenTicket.Suggestion.Queue;
 using Parse;
 
-namespace GoldenTicket.Suggestion.Service.Registration
+namespace GoldenTicket.Test.ConcertIntegration.Registration
 {
     public static class DIMapper
     {
@@ -51,7 +51,6 @@ namespace GoldenTicket.Suggestion.Service.Registration
 
                 Component.For<IRuleDataProvider<ParseObject>>()
                          .ImplementedBy<RuleDataProvider>()
-
             };
 
             return registrations;

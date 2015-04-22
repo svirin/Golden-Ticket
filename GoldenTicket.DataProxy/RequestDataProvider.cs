@@ -58,7 +58,7 @@ namespace GoldenTicket.DataProxy.Parse
 
             item.UniqueID = prsConcert.ObjectId;
 
-            LogFactory.Log.InfoFormat("User request #{0} successfuly saved", item.UniqueID);
+            LogFactory.Log.InfoFormat("Request #{0} successfuly saved", item.UniqueID);
         }
 
         public void ActivateRequest(Request item)

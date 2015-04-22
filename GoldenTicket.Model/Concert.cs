@@ -37,6 +37,5 @@ namespace GoldenTicket.Model
         public string NormalPrice { get; set; }
 
         public string DiscountPrice { get; set; }
-
     }
 }

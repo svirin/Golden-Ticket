@@ -7,5 +7,11 @@ namespace GoldenTicket.Data.Interfaces
          where TRawEntity : class
     {
         IEnumerable<User> GetAcctualUsers();
+
+        void Save(User item);
+        void SaveMany(IEnumerable<User> items);
+
+        void Delete(User item);
+        void DeleteMany(IEnumerable<User> items);
     }
 }

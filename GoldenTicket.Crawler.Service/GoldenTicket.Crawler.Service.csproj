@@ -127,9 +127,9 @@
       <Project>{a55c324e-e602-4cca-936f-e77ae86a277a}</Project>
       <Name>GoldenTicket.Scheduler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GoldenTicket.Suggestion.Test\GoldenTicket.Suggestion.Test.csproj">
+    <ProjectReference Include="..\GoldenTicket.Suggestion.AprioriCommander\GoldenTicket.Suggestion.AprioriCommander.csproj">
       <Project>{e3f25027-090f-4624-8ce6-08b3c24abfd7}</Project>
-      <Name>GoldenTicket.Suggestion.Test</Name>
+      <Name>GoldenTicket.Suggestion.AprioriCommander</Name>
     </ProjectReference>
     <ProjectReference Include="..\GoldenTicket.Suggestion.Queue\GoldenTicket.Suggestion.Queue.csproj">
       <Project>{ea9613b3-78b8-492f-a157-c5d48bcf04ac}</Project>

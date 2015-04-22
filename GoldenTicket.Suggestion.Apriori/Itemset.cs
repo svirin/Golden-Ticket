@@ -24,7 +24,7 @@ namespace GoldenTicket.Suggestion.Apriori
 
         public Itemset Remove(Itemset itemset)
         {
-            Itemset removed = new Itemset();
+            var removed = new Itemset();
             removed.AddRange(from item in this
                              where !itemset.Contains(item)
                              select item);

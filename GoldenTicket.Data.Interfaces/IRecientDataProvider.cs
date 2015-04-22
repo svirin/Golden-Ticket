@@ -7,11 +7,13 @@ namespace GoldenTicket.Data.Interfaces
          where TRawEntity : class
     {
         IEnumerable<Recient> GetRecientItems();
-
+        IEnumerable<Recient> GetRecientItems(string username);
         bool IsExisted(Recient item);
 
         void Save(Recient item);
-
         void SaveMany(IEnumerable<Recient> items);
+
+        void Delete(Recient item);
+        void DeleteMany(IEnumerable<Recient> items);
     }
 }

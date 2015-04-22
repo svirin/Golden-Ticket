@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRuleDataProvider.cs" />
     <Compile Include="ILikeDataProvider.cs" />
     <Compile Include="IJoinDataProvider.cs" />
     <Compile Include="ISettingsDataProvider.cs" />

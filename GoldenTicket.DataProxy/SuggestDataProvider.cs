@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using GoldenTicket.Data.Interfaces;
+using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Model;
 using GoldenTicket.Utilities;
 using Parse;
@@ -88,7 +89,7 @@ namespace GoldenTicket.DataProxy.Parse
 
             concert["Username"] = item.Username.ToCustomLower();
             concert["ConcertId"] = item.ConcertId;
-            
+
             return concert;
         }
 

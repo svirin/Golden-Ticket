@@ -1,7 +1,7 @@
 ﻿using GoldenTicket.Command.Interfaces;
 using GoldenTicket.Model;
 
-namespace GoldenTicket.Suggestion.Test
+namespace GoldenTicket.Suggestion.AprioriCommander
 {
     public class CommandFactory : ICommandFactory<UserRecientBlock>
     {

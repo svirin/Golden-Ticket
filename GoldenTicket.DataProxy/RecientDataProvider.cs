@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using GoldenTicket.Data.Interfaces;
+using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Model;
 using GoldenTicket.Utilities;
 using Parse;
@@ -33,7 +34,18 @@ namespace GoldenTicket.DataProxy.Parse
         public IEnumerable<Recient> GetRecientItems()
         {
             var query = from recient in ParseObject.GetQuery("Recent")
-                        orderby recient.Get<string>("Name"), recient.Get<string>("Name")
+                        orderby recient.Get<string>("Username"), recient.Get<string>("Username")
+                        select recient;
+
+            var result = query.FindAsync().Result;
+            var recientResultSet = result.Select(Convert);
+            return recientResultSet;
+        }
+
+        public IEnumerable<Recient> GetRecientItems(string username)
+        {
+            var query = from recient in ParseObject.GetQuery("Recent")
+                        where recient.Get<string>("Username") == username
                         select recient;
 
             var result = query.FindAsync().Result;
@@ -64,6 +76,27 @@ namespace GoldenTicket.DataProxy.Parse
 
         #endregion
 
+        #region Delete
+
+        public void Delete(Recient item)
+        {
+            var prsUser = Convert(item);
+
+            prsUser.DeleteAsync().Wait();
+
+            LogFactory.Log.InfoFormat("Recient #{0} successfuly deleted", item.UniqueID);
+        }
+
+        public void DeleteMany(IEnumerable<Recient> items)
+        {
+            foreach (var item in items)
+            {
+                Delete(item);
+            }
+        }
+
+        #endregion
+
         #region IsExist
 
         public bool IsExisted(Recient item)
@@ -84,7 +117,10 @@ namespace GoldenTicket.DataProxy.Parse
 
         public ParseObject Convert(Recient item)
         {
-            var concert = new ParseObject("Recent");
+            var concert = new ParseObject("Recent")
+            {
+                ObjectId = item.UniqueID
+            };
 
             concert["Username"] = item.Username.ToCustomLower();
             concert["ConcertId"] = item.ConcertId;

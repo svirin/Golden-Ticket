@@ -50,15 +50,41 @@ namespace GoldenTicket.DataProxy.Parse
 
         public void Save(User item)
         {
-            throw new System.NotImplementedException();
+            var prsUser = Convert(item);
+
+            prsUser.SaveAsync().Wait();
+
+            item.UniqueID = prsUser.ObjectId;
+
+            LogFactory.Log.InfoFormat("User #{0} successfuly saved", item.UniqueID);
         }
 
         public void SaveMany(IEnumerable<User> items)
         {
             foreach (var item in items)
             {
-                Thread.Sleep(150);
-                //LogFactory.Log.Info("Save response #" + item.UniqueID);
+                Save(item);
+            }
+        }
+
+        #endregion
+
+        #region Delete
+
+        public void Delete(User item)
+        {
+            var prsUser = Convert(item);
+
+            prsUser.DeleteAsync().Wait();
+
+            LogFactory.Log.InfoFormat("User #{0} successfuly deleted", item.UniqueID);
+        }
+
+        public void DeleteMany(IEnumerable<User> items)
+        {
+            foreach (var item in items)
+            {
+                Delete(item);
             }
         }
 
@@ -77,7 +103,10 @@ namespace GoldenTicket.DataProxy.Parse
 
         public ParseObject Convert(User item)
         {
-            var user = new ParseObject("User");
+            var user = new ParseObject("User")
+            {
+                ObjectId = item.UniqueID
+            };
 
             user["Username"] = item.Username.ToCustomLower();
 

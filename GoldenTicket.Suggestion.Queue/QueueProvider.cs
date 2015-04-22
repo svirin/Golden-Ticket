@@ -32,8 +32,10 @@ namespace GoldenTicket.Suggestion.Queue
         private UserRecientBlock LoadPivotedRecients(IEnumerable<Recient> recientItems) 
         {
             var userRecientBlock = new UserRecientBlock { VisitedUsers = new List<User>() };
-        
-            var distinctUsers = recientItems.DistinctBy(recient=>recient.Username).Select(recient=>recient.Username).ToList();
+
+            var recientItemsList = recientItems as IList<Recient> ?? recientItems.ToList();
+
+            var distinctUsers = recientItemsList.DistinctBy(recient => recient.Username).Select(recient => recient.Username).ToList();
 
             foreach (var username in distinctUsers)
             {
@@ -41,7 +43,7 @@ namespace GoldenTicket.Suggestion.Queue
                     new User
                     {
                         Username = username,
-                        VisitedConcertsIds = recientItems.Where(item => item.Username == username)
+                        VisitedConcertsIds = recientItemsList.Where(item => item.Username == username)
                                                      .Select(item => item.ConcertId).ToList()
                     });
             }

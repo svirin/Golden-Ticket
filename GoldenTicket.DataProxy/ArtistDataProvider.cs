@@ -19,8 +19,7 @@ namespace GoldenTicket.DataProxy.Parse
                         where concert.Get<string>("objectId") == objectId
                         select concert;
 
-            var task = query.FindAsync();
-            var resultSet = task.Result.ToList();
+            var resultSet = query.FindAsync().Result.ToList();
 
             if (!resultSet.Any())
                 throw new DataException(string.Format("Artist with id #{0} does not existed", objectId));

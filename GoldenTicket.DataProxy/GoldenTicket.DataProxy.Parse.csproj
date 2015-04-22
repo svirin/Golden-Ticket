@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtistDataProvider.cs" />
+    <Compile Include="RuleDataProvider.cs" />
     <Compile Include="LikeDataProvider.cs" />
     <Compile Include="JoinDataProvider.cs" />
     <Compile Include="SettingsDataProvider.cs" />

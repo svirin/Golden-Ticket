@@ -102,12 +102,7 @@ namespace GoldenTicket.Creator
         {
             var concertProvider = DI.Factory.GetInstance<IConcertDataProvider<ParseObject>>();
 
-            var user = new User
-            {
-                Username = "Unknown"
-            };
-
-            var suggestedList = concertProvider.GetSuggestToUser(user);
+            var suggestedList = concertProvider.GetSuggestToUser("Unknown");
         }
 
         private static void GetConcertByVisits()
@@ -332,7 +327,7 @@ namespace GoldenTicket.Creator
             var searchResult = searchResultProvider.GetByUserRequest(request);
 
             // Load suggestions by user
-            var suggestionResult = searchResultProvider.GetSuggestToUser(user);
+            var suggestionResult = searchResultProvider.GetSuggestToUser(user.Username);
         }
 
         private static void CheckIsExisted()
