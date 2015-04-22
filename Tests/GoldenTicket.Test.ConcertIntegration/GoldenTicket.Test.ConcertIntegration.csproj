@@ -126,6 +126,10 @@
       <Project>{ea9613b3-78b8-492f-a157-c5d48bcf04ac}</Project>
       <Name>GoldenTicket.Suggestion.Queue</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GoldenTicket.Test.Helpers\GoldenTicket.Test.Helpers.csproj">
+      <Project>{14628173-be68-410a-9d2e-a519395d0145}</Project>
+      <Name>GoldenTicket.Test.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
