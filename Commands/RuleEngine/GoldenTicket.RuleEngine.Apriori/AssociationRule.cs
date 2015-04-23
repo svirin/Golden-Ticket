@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GoldenTicket.Suggestion.Apriori
+namespace GoldenTicket.RuleEngine.Apriori
 {
     public class AssociationRule
     {

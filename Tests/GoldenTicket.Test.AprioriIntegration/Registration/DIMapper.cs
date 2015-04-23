@@ -6,8 +6,8 @@ using GoldenTicket.Data.Interfaces;
 using GoldenTicket.DataProxy.Parse;
 using GoldenTicket.Model;
 using GoldenTicket.Queue.Interfaces;
-using GoldenTicket.Suggestion.AprioriCommander;
-using GoldenTicket.Suggestion.Queue;
+using GoldenTicket.RuleEngine.AprioriCommander;
+using GoldenTicket.RuleEngine.Queue;
 using Parse;
 
 namespace GoldenTicket.Test.AprioriIntegration.Registration

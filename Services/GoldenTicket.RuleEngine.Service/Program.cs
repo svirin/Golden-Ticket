@@ -2,7 +2,7 @@
 using System.ServiceProcess;
 using System.Threading;
 
-namespace GoldenTicket.Suggestion.Service
+namespace GoldenTicket.RuleEngine.Service
 {
     static class Program
     {
@@ -14,7 +14,7 @@ namespace GoldenTicket.Suggestion.Service
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             // Initialize windows service
-            var service = new SuggestionService();
+            var service = new RuleEngineService();
 
             // If in debugger
             if (args.Length > 0 && args[0] == "RUNINDEBUGGER")

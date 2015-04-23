@@ -34,7 +34,7 @@ namespace GoldenTicket.DataProxy.Parse
         public IEnumerable<User> GetAcctualUsers()
         {
             var query = from user in ParseObject.GetQuery("User")
-                        orderby user.Get<string>("Name"), user.Get<string>("Name")
+                        orderby user.Get<string>("Username"), user.Get<string>("Username")
                         select user;
 
             var task = query.FindAsync();

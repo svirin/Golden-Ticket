@@ -223,47 +223,47 @@ namespace GoldenTicket.Test.ConcertIntegration
             return recients;
         }
 
-        [Test]
-        public void GetSuggestByUser1()
-        {
-            var queue = new ConcurrentQueue<UserRecientBlock>();
+        //[Test]
+        //public void GetSuggestByUser1()
+        //{
+        //    var queue = new ConcurrentQueue<UserRecientBlock>();
 
-            _recients = SetRecient1();
+        //    _recients = SetRecient1();
 
-            Helper.EnqueueData(queue);
+        //    Helper.EnqueueData(queue);
 
-            UserRecientBlock dataBlock;
+        //    UserRecientBlock dataBlock;
 
-            queue.TryDequeue(out dataBlock);
+        //    queue.TryDequeue(out dataBlock);
 
-            Helper.ExecuteSuggestCommand(dataBlock);
+        //    Helper.ExecuteSuggestCommand(dataBlock);
 
-            /**
-             *  Arrival result
-             **
-               {concert2}
-               {concert1}
-               {concert2, concert3}
-               {concert2, concert1, concert3}
-               {concert5, concert2, concert3}
+        //    /**
+        //     *  Arrival result
+        //     **
+        //       {concert2}
+        //       {concert1}
+        //       {concert2, concert3}
+        //       {concert2, concert1, concert3}
+        //       {concert5, concert2, concert3}
 
-               {concert2} => {concert3} (support: 60%, confidence: 75%)
-               {concert3} => {concert2} (support: 60%, confidence: 100%)
-             */
+        //       {concert2} => {concert3} (support: 60%, confidence: 75%)
+        //       {concert3} => {concert2} (support: 60%, confidence: 100%)
+        //     */
 
-            var rule2 = Helper.LoadRule(_concerts[1].UniqueID);
-            var rule3 = Helper.LoadRule(_concerts[2].UniqueID);
+        //    var rule2 = Helper.LoadRule(_concerts[1].UniqueID);
+        //    var rule3 = Helper.LoadRule(_concerts[2].UniqueID);
 
-            _rules.Add(rule2);
-            _rules.Add(rule3);
+        //    _rules.Add(rule2);
+        //    _rules.Add(rule3);
 
-            var concerts1 = Helper.LoadSuggestByUser(_users[0].Username);
-            Assert.AreEqual(concerts1.Count, 1, "Loaded wrong values");
-            Assert.AreEqual(concerts1.Single().UniqueID, _concerts[2].UniqueID, "Loaded wrong values");
+        //    var concerts1 = Helper.LoadSuggestByUser(_users[0].Username);
+        //    Assert.AreEqual(concerts1.Count, 1, "Loaded wrong values");
+        //    Assert.AreEqual(concerts1.Single().UniqueID, _concerts[2].UniqueID, "Loaded wrong values");
 
-            var concerts2 = Helper.LoadSuggestByUser(_users[2].Username);
-            Assert.AreEqual(concerts2.Count, 2, "Loaded wrong values");
-        }
+        //    var concerts2 = Helper.LoadSuggestByUser(_users[2].Username);
+        //    Assert.AreEqual(concerts2.Count, 2, "Loaded wrong values");
+        //}
        
         [TearDown] 
         public void AfterRunningTest()

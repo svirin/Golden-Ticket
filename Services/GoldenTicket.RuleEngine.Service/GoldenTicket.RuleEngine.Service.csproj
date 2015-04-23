@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{14628173-BE68-410A-9D2E-A519395D0145}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{4C8AB6F9-A227-4685-836D-5E7886DCCC16}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoldenTicket.Test.Helpers</RootNamespace>
-    <AssemblyName>GoldenTicket.Test.Helpers</AssemblyName>
+    <RootNamespace>GoldenTicket.RuleEngine.Service</RootNamespace>
+    <AssemblyName>GoldenTicket.RuleEngine.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -48,32 +50,57 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper.cs" />
+    <Compile Include="Registration\DIMapper.cs" />
+    <Compile Include="Program.cs">
+      <SubType>
+      </SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleEngineService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RuleEngineService.Designer.cs">
+      <DependentUpon>RuleEngineService.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.AprioriCommander\GoldenTicket.RuleEngine.AprioriCommander.csproj">
       <Project>{cca5fedd-3e43-426d-a934-2712f6fc33bd}</Project>
       <Name>GoldenTicket.RuleEngine.AprioriCommander</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.Apriori\GoldenTicket.RuleEngine.Apriori.csproj">
-      <Project>{cab3c0d6-f764-4f5c-b833-21a6dd886c46}</Project>
-      <Name>GoldenTicket.RuleEngine.Apriori</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
       <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
       <Name>GoldenTicket.Command.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
+      <Project>{439caf15-3f8a-4e4a-9040-fc49eeff38a6}</Project>
+      <Name>GoldenTicket.ConfigurationManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
       <Name>GoldenTicket.Data.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
+      <Project>{ab74ecd2-d29d-4806-811a-4afa3e8b1803}</Project>
+      <Name>GoldenTicket.DataProxy.Parse</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GoldenTicket.DI\GoldenTicket.DI.csproj">
       <Project>{b7487b46-0862-470f-b3ed-df3bd5e1cee5}</Project>
       <Name>GoldenTicket.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GoldenTicket.Interceptor\GoldenTicket.Interceptor.csproj">
+      <Project>{cbf443a0-9cf0-45c5-9f2f-a18602e022f4}</Project>
+      <Name>GoldenTicket.Interceptor</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\GoldenTicket.Model\GoldenTicket.Model.csproj">
       <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
@@ -82,6 +109,10 @@
     <ProjectReference Include="..\..\GoldenTicket.Queue.Interfaces\GoldenTicket.Queue.Interfaces.csproj">
       <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
       <Name>GoldenTicket.Queue.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GoldenTicket.Scheduler\GoldenTicket.Scheduler.csproj">
+      <Project>{a55c324e-e602-4cca-936f-e77ae86a277a}</Project>
+      <Name>GoldenTicket.Scheduler</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Queue\RuleEngine\GoldenTicket.RuleEngine.Queue\GoldenTicket.RuleEngine.Queue.csproj">
       <Project>{c23b003b-4dbe-4df7-9e1e-1af6e1915d8e}</Project>

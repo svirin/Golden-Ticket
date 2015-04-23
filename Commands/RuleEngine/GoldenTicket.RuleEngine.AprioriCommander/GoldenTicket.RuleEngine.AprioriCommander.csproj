@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{14628173-BE68-410A-9D2E-A519395D0145}</ProjectGuid>
+    <ProjectGuid>{CCA5FEDD-3E43-426D-A934-2712F6FC33BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoldenTicket.Test.Helpers</RootNamespace>
-    <AssemblyName>GoldenTicket.Test.Helpers</AssemblyName>
+    <RootNamespace>GoldenTicket.RuleEngine.AprioriCommander</RootNamespace>
+    <AssemblyName>GoldenTicket.RuleEngine.AprioriCommander</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,16 +31,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\..\Externals\Castle\Castle.Core.dll</HintPath>
+      <HintPath>..\..\..\Externals\Castle\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\..\Externals\Castle\Castle.Windsor.dll</HintPath>
+      <HintPath>..\..\..\Externals\Castle\Castle.Windsor.dll</HintPath>
     </Reference>
     <Reference Include="Parse">
-      <HintPath>..\..\Externals\Parse\Parse.dll</HintPath>
+      <HintPath>..\..\..\Externals\Parse\Parse.dll</HintPath>
     </Reference>
     <Reference Include="Parse.NetFx45">
-      <HintPath>..\..\Externals\Parse\Parse.NetFx45.dll</HintPath>
+      <HintPath>..\..\..\Externals\Parse\Parse.NetFx45.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,41 +51,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="CommandFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.AprioriCommander\GoldenTicket.RuleEngine.AprioriCommander.csproj">
-      <Project>{cca5fedd-3e43-426d-a934-2712f6fc33bd}</Project>
-      <Name>GoldenTicket.RuleEngine.AprioriCommander</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.Apriori\GoldenTicket.RuleEngine.Apriori.csproj">
-      <Project>{cab3c0d6-f764-4f5c-b833-21a6dd886c46}</Project>
-      <Name>GoldenTicket.RuleEngine.Apriori</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
+    <ProjectReference Include="..\..\..\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
       <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
       <Name>GoldenTicket.Command.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
+    <ProjectReference Include="..\..\..\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
       <Name>GoldenTicket.Data.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.DI\GoldenTicket.DI.csproj">
+    <ProjectReference Include="..\..\..\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
+      <Project>{ab74ecd2-d29d-4806-811a-4afa3e8b1803}</Project>
+      <Name>GoldenTicket.DataProxy.Parse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\GoldenTicket.DI\GoldenTicket.DI.csproj">
       <Project>{b7487b46-0862-470f-b3ed-df3bd5e1cee5}</Project>
       <Name>GoldenTicket.DI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Model\GoldenTicket.Model.csproj">
+    <ProjectReference Include="..\..\..\GoldenTicket.Model\GoldenTicket.Model.csproj">
       <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
       <Name>GoldenTicket.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Queue.Interfaces\GoldenTicket.Queue.Interfaces.csproj">
-      <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
-      <Name>GoldenTicket.Queue.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Queue\RuleEngine\GoldenTicket.RuleEngine.Queue\GoldenTicket.RuleEngine.Queue.csproj">
-      <Project>{c23b003b-4dbe-4df7-9e1e-1af6e1915d8e}</Project>
-      <Name>GoldenTicket.RuleEngine.Queue</Name>
+    <ProjectReference Include="..\GoldenTicket.RuleEngine.Apriori\GoldenTicket.RuleEngine.Apriori.csproj">
+      <Project>{cab3c0d6-f764-4f5c-b833-21a6dd886c46}</Project>
+      <Name>GoldenTicket.RuleEngine.Apriori</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

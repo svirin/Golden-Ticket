@@ -86,6 +86,10 @@
     <Compile Include="Registration\DIMapper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.AprioriCommander\GoldenTicket.RuleEngine.AprioriCommander.csproj">
+      <Project>{cca5fedd-3e43-426d-a934-2712f6fc33bd}</Project>
+      <Name>GoldenTicket.RuleEngine.AprioriCommander</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
       <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
       <Name>GoldenTicket.Command.Interfaces</Name>
@@ -122,13 +126,9 @@
       <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
       <Name>GoldenTicket.Queue.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Suggestion.Queue\GoldenTicket.Suggestion.Queue.csproj">
-      <Project>{ea9613b3-78b8-492f-a157-c5d48bcf04ac}</Project>
-      <Name>GoldenTicket.Suggestion.Queue</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Suggestion.AprioriCommander\GoldenTicket.Suggestion.AprioriCommander.csproj">
-      <Project>{e3f25027-090f-4624-8ce6-08b3c24abfd7}</Project>
-      <Name>GoldenTicket.Suggestion.AprioriCommander</Name>
+    <ProjectReference Include="..\..\Queue\RuleEngine\GoldenTicket.RuleEngine.Queue\GoldenTicket.RuleEngine.Queue.csproj">
+      <Project>{c23b003b-4dbe-4df7-9e1e-1af6e1915d8e}</Project>
+      <Name>GoldenTicket.RuleEngine.Queue</Name>
     </ProjectReference>
     <ProjectReference Include="..\GoldenTicket.Test.Helpers\GoldenTicket.Test.Helpers.csproj">
       <Project>{14628173-be68-410a-9d2e-a519395d0145}</Project>

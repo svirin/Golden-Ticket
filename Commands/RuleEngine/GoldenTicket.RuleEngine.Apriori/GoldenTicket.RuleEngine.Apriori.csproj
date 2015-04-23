@@ -7,8 +7,8 @@
     <ProjectGuid>{CAB3C0D6-F764-4F5C-B833-21A6DD886C46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoldenTicket.Suggestion.Apriori</RootNamespace>
-    <AssemblyName>GoldenTicket.Suggestion.Apriori</AssemblyName>
+    <RootNamespace>GoldenTicket.RuleEngine.Apriori</RootNamespace>
+    <AssemblyName>GoldenTicket.RuleEngine.Apriori</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

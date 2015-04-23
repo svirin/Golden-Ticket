@@ -4,13 +4,13 @@ using GoldenTicket.ConfigurationManager;
 using GoldenTicket.Model;
 using Parse;
 
-namespace GoldenTicket.Suggestion.Service
+namespace GoldenTicket.RuleEngine.Service
 {
-    public partial class SuggestionService : ServiceBase
+    public partial class RuleEngineService : ServiceBase
     {
         private Scheduler.Scheduler<UserRecientBlock> _scheduler;
 
-        public SuggestionService()
+        public RuleEngineService()
         {
             InitializeComponent();
         }
@@ -20,9 +20,9 @@ namespace GoldenTicket.Suggestion.Service
             // Initialize the Parse client with your Application ID and .NET Key found on
             ParseClient.Initialize(Config.ApplicationId, Config.DotNetKey);
 
-            int dueTo = Config.CurrentContext.AppSettings.SuggestionDueTo;
-            int period = Config.CurrentContext.AppSettings.SuggestionPeriod;
-            int workerAmounts = Config.CurrentContext.AppSettings.SuggestionWorkersAmount;
+            int dueTo = Config.CurrentContext.AppSettings.RuleEngineDueTo;
+            int period = Config.CurrentContext.AppSettings.RuleEnginePeriod;
+            int workerAmounts = Config.CurrentContext.AppSettings.RuleEngineWorkersAmount;
 
             _scheduler = new Scheduler.Scheduler<UserRecientBlock>(workerAmounts, dueTo, period);
             _scheduler.Start();

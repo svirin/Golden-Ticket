@@ -1,54 +1,27 @@
-﻿using GoldenTicket.Data.Interfaces;
+﻿using System.Threading.Tasks;
+using GoldenTicket.ConfigurationManager;
+using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Model;
 using GoldenTicket.Queue.Interfaces;
-using GoldenTicket.Utilities;
 using Parse;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace GoldenTicket.Suggestion.Queue
 {
-    public class QueueProvider : IQueueProvider<UserRecientBlock>
+     public class QueueProvider : IQueueProvider<User>
     {
-        public void Enqueue(ConcurrentQueue<UserRecientBlock> queue)
+        public void Enqueue(ConcurrentQueue<User> queue)
         {
-            var recientItems = LoadRecients();
+            var dataProvider = DI.Factory.GetInstance<IUserDataProvider<ParseObject>>();
 
-            var userRecientBlock = LoadPivotedRecients(recientItems);
+            var artists = dataProvider.GetAcctualUsers().ToList();
 
-            queue.Enqueue(userRecientBlock);
-        }
+            int maxParallelTasks = Config.CurrentContext.AppSettings.SuggestionQueueMaxParallelism;
 
-        private IEnumerable<Recient> LoadRecients() { 
-        
-            var dataProvider = DI.Factory.GetInstance<IRecientDataProvider<ParseObject>>();
-
-            var recients = dataProvider.GetRecientItems().ToList();
-
-            return recients;
-        }
-
-        private UserRecientBlock LoadPivotedRecients(IEnumerable<Recient> recientItems) 
-        {
-            var userRecientBlock = new UserRecientBlock { VisitedUsers = new List<User>() };
-
-            var recientItemsList = recientItems as IList<Recient> ?? recientItems.ToList();
-
-            var distinctUsers = recientItemsList.DistinctBy(recient => recient.Username).Select(recient => recient.Username).ToList();
-
-            foreach (var username in distinctUsers)
-            {
-                userRecientBlock.VisitedUsers.Add(
-                    new User
-                    {
-                        Username = username,
-                        VisitedConcertsIds = recientItemsList.Where(item => item.Username == username)
-                                                     .Select(item => item.ConcertId).ToList()
-                    });
-            }
-
-            return userRecientBlock;
+            Parallel.ForEach(artists,
+                new ParallelOptions { MaxDegreeOfParallelism = maxParallelTasks },
+                queue.Enqueue);
         }
     }
 }

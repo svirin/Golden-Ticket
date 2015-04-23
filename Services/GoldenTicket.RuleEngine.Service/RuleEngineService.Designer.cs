@@ -1,6 +1,6 @@
-﻿namespace GoldenTicket.Suggestion.Service
+﻿namespace GoldenTicket.RuleEngine.Service
 {
-    partial class SuggestionService
+    partial class RuleEngineService
     {
         /// <summary> 
         /// Required designer variable.

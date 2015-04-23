@@ -8,8 +8,8 @@ namespace GoldenTicket.Data.Interfaces
     {
         IEnumerable<Concert> GetAll();
         IEnumerable<Concert> GetByUserRequest(Request request);
-        IEnumerable<Concert> GetSuggestToUser(string username);
-        IEnumerable<Concert> GetSuggestToConcerts(string concertId);
+        IEnumerable<Concert> GetConcertsSuggestedToUser(string username);
+        IEnumerable<Concert> GetConcertsSuggestedToConcert(string concertId);
 
         void SaveMany(IEnumerable<Concert> items);
         void Save(Concert item);

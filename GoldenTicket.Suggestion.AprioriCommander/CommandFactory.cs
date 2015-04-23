@@ -3,9 +3,9 @@ using GoldenTicket.Model;
 
 namespace GoldenTicket.Suggestion.AprioriCommander
 {
-    public class CommandFactory : ICommandFactory<UserRecientBlock>
+    public class CommandFactory : ICommandFactory<User>
     {
-        public ICommand<UserRecientBlock> CreateCommand()
+        public ICommand<User> CreateCommand()
         {
             return new Command();
         }

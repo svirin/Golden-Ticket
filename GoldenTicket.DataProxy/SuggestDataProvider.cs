@@ -31,10 +31,10 @@ namespace GoldenTicket.DataProxy.Parse
             return item;
         }
 
-        public IEnumerable<Suggest> GetSuggestByUser(User user)
+        public IEnumerable<Suggest> GetSuggestByUser(string username)
         {
             var query = from suggest in ParseObject.GetQuery("Suggest")
-                        where suggest.Get<string>("Username") == user.Username
+                        where suggest.Get<string>("Username") == username
                         select suggest;
 
             var result = query.FindAsync().Result;
@@ -60,6 +60,27 @@ namespace GoldenTicket.DataProxy.Parse
             foreach (var item in items)
             {
                 Save(item);
+            }
+        }
+
+        #endregion
+
+        #region Delete
+
+        public void Delete(Suggest item)
+        {
+            var prsUser = Convert(item);
+
+            prsUser.DeleteAsync().Wait();
+
+            LogFactory.Log.InfoFormat("Suggest #{0} successfuly deleted", item.UniqueID);
+        }
+
+        public void DeleteMany(IEnumerable<Suggest> items)
+        {
+            foreach (var item in items)
+            {
+                Delete(item);
             }
         }
 

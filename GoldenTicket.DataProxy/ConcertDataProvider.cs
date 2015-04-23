@@ -48,34 +48,37 @@ namespace GoldenTicket.DataProxy.Parse
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Concert> GetSuggestToUser(string username)
+        public IEnumerable<Concert> GetConcertsSuggestedToUser(string username)
         {
-            var recientProvider = DI.Factory.GetInstance<IRecientDataProvider<ParseObject>>();
-            var recients = recientProvider.GetRecientItems(username).ToList();
-            var recientIdents = recients.Select(item => item.ConcertId);
-
-            var rulesProvider = DI.Factory.GetInstance<IRuleDataProvider<ParseObject>>();
-            var rules = rulesProvider.GetRulesBySources(recientIdents);
-            var rulesTargetIdents = rules.Select(item => item.TargetConcertIds);
-            var rulesTargetIdentsAsOne = string.Join(",", rulesTargetIdents);
-            var concertIds = rulesTargetIdentsAsOne.Split(new[] {","}, StringSplitOptions.None);
-
-            var concerts = GetByIds(concertIds);
+            var suggestProvider = DI.Factory.GetInstance<ISuggestDataProvider<ParseObject>>();
+            var suggests = suggestProvider.GetSuggestByUser(username).ToList();
+            var suggestsIds = suggests.Select(item => item.ConcertId);
+            var concerts = GetByIds(suggestsIds);
             return concerts;
         }
 
-        public IEnumerable<Concert> GetSuggestToConcerts(string concertId)
+        public IEnumerable<Concert> GetConcertsSuggestedToConcert(string concertId)
         {
             var ruleProvider = DI.Factory.GetInstance<IRuleDataProvider<ParseObject>>();
-
             var rule = ruleProvider.GetRuleBySource(concertId);
-
             var targets = rule.TargetConcertIds.Split(new[] {","}, StringSplitOptions.None);
-
             var concerts = GetByIds(targets);
-
             return concerts;
         }
+
+        //public IEnumerable<Concert> GetSuggestsToUser(string username)
+        //{
+        //    var recientProvider = DI.Factory.GetInstance<IRecientDataProvider<ParseObject>>();
+        //    var recients = recientProvider.GetRecientItems(username).ToList();
+        //    var recientIdents = recients.Select(item => item.ConcertId);
+        //    var rulesProvider = DI.Factory.GetInstance<IRuleDataProvider<ParseObject>>();
+        //    var rules = rulesProvider.GetRulesBySources(recientIdents);
+        //    var rulesTargetIdents = rules.Select(item => item.TargetConcertIds);
+        //    var rulesTargetIdentsAsOne = string.Join(",", rulesTargetIdents);
+        //    var concertIds = rulesTargetIdentsAsOne.Split(new[] { "," }, StringSplitOptions.None);
+        //    var concerts = GetByIds(concertIds);
+        //    return concerts;
+        //}
 
         private IEnumerable<Concert> GetByIds(IEnumerable<string> ids)
         {

@@ -179,7 +179,7 @@ namespace GoldenTicket.Test.Helpers
         {
             var dataProvider = DI.Factory.GetInstance<IConcertDataProvider<ParseObject>>();
 
-            var concerts = dataProvider.GetSuggestToConcerts(concertId).ToList();
+            var concerts = dataProvider.GetConcertsSuggestedToConcert(concertId).ToList();
 
             return concerts;
         }
@@ -187,7 +187,7 @@ namespace GoldenTicket.Test.Helpers
         {
             var dataProvider = DI.Factory.GetInstance<IConcertDataProvider<ParseObject>>();
 
-            var concerts = dataProvider.GetSuggestToUser(username).ToList();
+            var concerts = dataProvider.GetConcertsSuggestedToUser(username).ToList();
 
             return concerts;
         }
