@@ -46,11 +46,11 @@
     <Compile Include="SettingsItem.cs" />
     <Compile Include="Recient.cs" />
     <Compile Include="Suggest.cs" />
-    <Compile Include="UserRecientBlock.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concert.cs" />
+    <Compile Include="UserRecientBlock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
