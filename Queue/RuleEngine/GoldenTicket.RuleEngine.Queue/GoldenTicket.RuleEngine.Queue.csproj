@@ -30,16 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\..\Externals\Castle\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\..\..\Externals\Castle\Castle.Windsor.dll</HintPath>
-    </Reference>
-    <Reference Include="Parse">
+    <Reference Include="Parse, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Externals\Parse\Parse.dll</HintPath>
     </Reference>
-    <Reference Include="Parse.NetFx45">
+    <Reference Include="Parse.NetFx45, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Externals\Parse\Parse.NetFx45.dll</HintPath>
     </Reference>
     <Reference Include="System" />

@@ -7,7 +7,7 @@ namespace GoldenTicket.RuleEngine.AprioriRuler
     {
         public ICommand<UserRecientBlock> CreateCommand()
         {
-            return new AprioriRuler.Command();
+            return new Command();
         }
     }
 }

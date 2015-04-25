@@ -1,11 +1,9 @@
 ﻿//ItemsetCollection.cs
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace GoldenTicket.RuleEngine.Apriori
+namespace GoldenTicket.Apriori
 {
     public class ItemsetCollection : List<Itemset>
     {
@@ -13,7 +11,7 @@ namespace GoldenTicket.RuleEngine.Apriori
 
         public Itemset GetUniqueItems()
         {
-            Itemset unique = new Itemset();
+            var unique = new Itemset();
 
             foreach (Itemset itemset in this)
             {
@@ -31,7 +29,7 @@ namespace GoldenTicket.RuleEngine.Apriori
                               where itemset.Contains(item)
                               select itemset).Count();
 
-            double support = ((double)matchCount / (double)this.Count) * 100.0;
+            double support = (matchCount / (double)Count) * 100.0;
             return (support);
         }
 
@@ -41,7 +39,7 @@ namespace GoldenTicket.RuleEngine.Apriori
                               where i.Contains(itemset)
                               select i).Count();
 
-            double support = ((double)matchCount / (double)this.Count) * 100.0;
+            double support = (matchCount / (double)Count) * 100.0;
             return (support);
         }
 

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GoldenTicket.Apriori;
 using GoldenTicket.Command.Interfaces;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Model;
-using GoldenTicket.RuleEngine.Apriori;
 using Parse;
 
 namespace GoldenTicket.RuleEngine.AprioriRuler

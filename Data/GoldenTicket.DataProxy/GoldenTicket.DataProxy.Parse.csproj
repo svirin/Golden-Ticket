@@ -30,11 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\Externals\log4net\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\log4net\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Parse">
-      <HintPath>..\Externals\Parse\Parse.dll</HintPath>
+    <Reference Include="Parse, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\Parse\Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse.NetFx45">
+      <HintPath>..\..\Externals\Parse\Parse.NetFx45.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

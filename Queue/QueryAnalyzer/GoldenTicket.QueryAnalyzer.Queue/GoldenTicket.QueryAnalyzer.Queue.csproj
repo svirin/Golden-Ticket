@@ -30,11 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Parse">
-      <HintPath>..\Externals\Parse\Parse.dll</HintPath>
+    <Reference Include="Parse, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Externals\Parse\Parse.dll</HintPath>
     </Reference>
-    <Reference Include="Parse.NetFx45">
-      <HintPath>..\Externals\Parse\Parse.NetFx45.dll</HintPath>
+    <Reference Include="Parse.NetFx45, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Externals\Parse\Parse.NetFx45.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

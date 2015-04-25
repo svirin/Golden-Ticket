@@ -1,65 +1,59 @@
 ﻿//Apriori.cs
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace GoldenTicket.RuleEngine.Apriori
+namespace GoldenTicket.Apriori
 {
     public class AprioriMining
     {
         public static ItemsetCollection DoApriori(ItemsetCollection db, double supportThreshold)
         {
-            Itemset I = db.GetUniqueItems();
-            ItemsetCollection L = new ItemsetCollection(); //resultant large itemsets
-            ItemsetCollection Li = new ItemsetCollection(); //large itemset in each iteration
-            ItemsetCollection Ci = new ItemsetCollection(); //pruned itemset in each iteration
+            var I = db.GetUniqueItems();
+            var l = new ItemsetCollection(); //resultant large itemsets
+            var li = new ItemsetCollection(); //large itemset in each iteration
+            var ci = new ItemsetCollection(); //pruned itemset in each iteration
+            ci.AddRange(I.Select(item => new Itemset {item}));
 
             //first iteration (1-item itemsets)
-            foreach (string item in I)
-            {
-                Ci.Add(new Itemset() { item });
-            }
-
             //next iterations
-            int k = 2;
-            while (Ci.Count != 0)
+            var k = 2;
+            while (ci.Count != 0)
             {
                 //set Li from Ci (pruning)
-                Li.Clear();
-                foreach (Itemset itemset in Ci)
+                li.Clear();
+                foreach (var itemset in ci)
                 {
                     itemset.Support = db.FindSupport(itemset);
                     if (itemset.Support >= supportThreshold)
                     {
-                        Li.Add(itemset);
-                        L.Add(itemset);
+                        li.Add(itemset);
+                        l.Add(itemset);
                     }
                 }
 
                 //set Ci for next iteration (find supersets of Li)
-                Ci.Clear();
-                Ci.AddRange(Bit.FindSubsets(Li.GetUniqueItems(), k)); //get k-item subsets
+                ci.Clear();
+                ci.AddRange(Bit.FindSubsets(li.GetUniqueItems(), k)); //get k-item subsets
                 k += 1;
             }
 
-            return (L);
+            return (l);
         }
 
-        public static List<AssociationRule> Mine(ItemsetCollection db, ItemsetCollection L, double confidenceThreshold)
+        public static List<AssociationRule> Mine(ItemsetCollection db, ItemsetCollection l, double confidenceThreshold)
         {
-            List<AssociationRule> allRules = new List<AssociationRule>();
+            var allRules = new List<AssociationRule>();
 
-            foreach (Itemset itemset in L)
+            foreach (Itemset itemset in l)
             {
-                ItemsetCollection subsets = Bit.FindSubsets(itemset, 0); //get all subsets
-                foreach (Itemset subset in subsets)
+                var subsets = Bit.FindSubsets(itemset, 0); //get all subsets
+                foreach (var subset in subsets)
                 {
-                    double confidence = (db.FindSupport(itemset) / db.FindSupport(subset)) * 100.0;
+                    var confidence = (db.FindSupport(itemset) / db.FindSupport(subset)) * 100.0;
                     if (confidence >= confidenceThreshold)
                     {
-                        AssociationRule rule = new AssociationRule();
+                        var rule = new AssociationRule();
                         rule.X.AddRange(subset);
                         rule.Y.AddRange(itemset.Remove(subset));
                         rule.Support = db.FindSupport(itemset);

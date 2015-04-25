@@ -1,11 +1,8 @@
 ﻿//AssociationRule.cs
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace GoldenTicket.RuleEngine.Apriori
+namespace GoldenTicket.Apriori
 {
     public class AssociationRule
     {
