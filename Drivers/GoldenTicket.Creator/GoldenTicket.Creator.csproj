@@ -1,23 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B30B6282-43BC-4469-8820-A18F1599ACBB}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{75BADE1C-F530-46B5-ACC9-7B9C4FEB0797}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoldenTicket.Test.AprioriIntegration</RootNamespace>
-    <AssemblyName>GoldenTicket.Test.AprioriIntegration</AssemblyName>
+    <RootNamespace>GoldenTicket.Creator</RootNamespace>
+    <AssemblyName>GoldenTicket.Creator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -27,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,24 +38,8 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\Externals\Castle\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.core">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.interfaces.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\nunit.util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NUnit.VisualStudio.TestAdapter">
-      <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="log4net">
+      <HintPath>..\Externals\log4net\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Parse">
       <HintPath>..\Externals\Parse\Parse.dll</HintPath>
@@ -67,29 +48,22 @@
       <HintPath>..\Externals\Parse\Parse.NetFx45.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
   <ItemGroup>
-    <Compile Include="AprioryTest.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration\DIMapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.AprioriRuler\GoldenTicket.RuleEngine.AprioriRuler.csproj">
-      <Project>{cca5fedd-3e43-426d-a934-2712f6fc33bd}</Project>
-      <Name>GoldenTicket.RuleEngine.AprioriRuler</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Common\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
       <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
       <Name>GoldenTicket.Command.Interfaces</Name>
@@ -97,6 +71,14 @@
     <ProjectReference Include="..\..\Common\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
       <Project>{439caf15-3f8a-4e4a-9040-fc49eeff38a6}</Project>
       <Name>GoldenTicket.ConfigurationManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Commands\Crawler\GoldenTicket.Crawler.Test\GoldenTicket.Crawler.Test.csproj">
+      <Project>{ebee00e7-1820-46e9-9e85-0ad7c2c30a23}</Project>
+      <Name>GoldenTicket.Crawler.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Queue\Crawler\GoldenTicket.Crawler.Queue\GoldenTicket.Crawler.Queue.csproj">
+      <Project>{6bd0c2e9-386c-4e34-9630-48bf4d989f9c}</Project>
+      <Name>GoldenTicket.Crawler.Queue</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
@@ -126,37 +108,19 @@
       <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
       <Name>GoldenTicket.Queue.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Queue\RuleEngine\GoldenTicket.RuleEngine.Queue\GoldenTicket.RuleEngine.Queue.csproj">
-      <Project>{c23b003b-4dbe-4df7-9e1e-1af6e1915d8e}</Project>
-      <Name>GoldenTicket.RuleEngine.Queue</Name>
+    <ProjectReference Include="..\..\Common\GoldenTicket.Scheduler\GoldenTicket.Scheduler.csproj">
+      <Project>{a55c324e-e602-4cca-936f-e77ae86a277a}</Project>
+      <Name>GoldenTicket.Scheduler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GoldenTicket.Test.Helpers\GoldenTicket.Test.Helpers.csproj">
-      <Project>{14628173-be68-410a-9d2e-a519395d0145}</Project>
-      <Name>GoldenTicket.Test.Helpers</Name>
+    <ProjectReference Include="..\..\Commands\Suggestion\GoldenTicket.Suggestion.UserSuggester\GoldenTicket.Suggestion.UserSuggester.csproj">
+      <Project>{e3f25027-090f-4624-8ce6-08b3c24abfd7}</Project>
+      <Name>GoldenTicket.Suggestion.UserSuggester</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Queue\Suggestion\GoldenTicket.Suggestion.Queue\GoldenTicket.Suggestion.Queue.csproj">
+      <Project>{ea9613b3-78b8-492f-a157-c5d48bcf04ac}</Project>
+      <Name>GoldenTicket.Suggestion.Queue</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

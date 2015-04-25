@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF5735DB-E99D-4157-A0FA-1C5427B250CF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoldenTicket.Crawler.Service</RootNamespace>
+    <AssemblyName>GoldenTicket.Crawler.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Externals\Castle\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\Externals\Castle\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Externals\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse">
+      <HintPath>..\Externals\Parse\Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse.NetFx45">
+      <HintPath>..\Externals\Parse\Parse.NetFx45.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CrawlerService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrawlerService.Designer.cs">
+      <DependentUpon>CrawlerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration\DIMapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
+      <Project>{439caf15-3f8a-4e4a-9040-fc49eeff38a6}</Project>
+      <Name>GoldenTicket.ConfigurationManager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Commands\Crawler\GoldenTicket.Crawler.Test\GoldenTicket.Crawler.Test.csproj">
+      <Project>{ebee00e7-1820-46e9-9e85-0ad7c2c30a23}</Project>
+      <Name>GoldenTicket.Crawler.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
+      <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
+      <Name>GoldenTicket.Command.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Queue\Crawler\GoldenTicket.Crawler.Queue\GoldenTicket.Crawler.Queue.csproj">
+      <Project>{6bd0c2e9-386c-4e34-9630-48bf4d989f9c}</Project>
+      <Name>GoldenTicket.Crawler.Queue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Drivers\GoldenTicket.Creator\GoldenTicket.Creator.csproj">
+      <Project>{75bade1c-f530-46b5-acc9-7b9c4feb0797}</Project>
+      <Name>GoldenTicket.Creator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
+      <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
+      <Name>GoldenTicket.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
+      <Project>{ab74ecd2-d29d-4806-811a-4afa3e8b1803}</Project>
+      <Name>GoldenTicket.DataProxy.Parse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.DI\GoldenTicket.DI.csproj">
+      <Project>{b7487b46-0862-470f-b3ed-df3bd5e1cee5}</Project>
+      <Name>GoldenTicket.DI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Log\GoldenTicket.Interceptor\GoldenTicket.Interceptor.csproj">
+      <Project>{cbf443a0-9cf0-45c5-9f2f-a18602e022f4}</Project>
+      <Name>GoldenTicket.Interceptor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Log\GoldenTicket.Logger.Log4Net\GoldenTicket.Logger.Log4Net.csproj">
+      <Project>{5b57f179-71fa-4e1c-94d3-3148baf3d8f3}</Project>
+      <Name>GoldenTicket.Logger.Log4Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Model\GoldenTicket.Model\GoldenTicket.Model.csproj">
+      <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
+      <Name>GoldenTicket.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.Queue.Interfaces\GoldenTicket.Queue.Interfaces.csproj">
+      <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
+      <Name>GoldenTicket.Queue.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.Scheduler\GoldenTicket.Scheduler.csproj">
+      <Project>{a55c324e-e602-4cca-936f-e77ae86a277a}</Project>
+      <Name>GoldenTicket.Scheduler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Commands\Suggestion\GoldenTicket.Suggestion.UserSuggester\GoldenTicket.Suggestion.UserSuggester.csproj">
+      <Project>{e3f25027-090f-4624-8ce6-08b3c24abfd7}</Project>
+      <Name>GoldenTicket.Suggestion.UserSuggester</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Queue\Suggestion\GoldenTicket.Suggestion.Queue\GoldenTicket.Suggestion.Queue.csproj">
+      <Project>{ea9613b3-78b8-492f-a157-c5d48bcf04ac}</Project>
+      <Name>GoldenTicket.Suggestion.Queue</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

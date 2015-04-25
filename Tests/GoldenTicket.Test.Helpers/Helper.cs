@@ -20,9 +20,17 @@ namespace GoldenTicket.Test.Helpers
 
             return rule;
         }
-        public static void ExecuteSuggestCommand(UserRecientBlock dataBlock)
+        public static void ExecuteRuleCommand(UserRecientBlock dataBlock)
         {
             var commandFactory = DI.Factory.GetInstance<ICommandFactory<UserRecientBlock>>();
+
+            var command = commandFactory.CreateCommand();
+
+            command.ExecuteCommand(dataBlock);
+        }
+        public static void ExecuteSuggestCommand(User dataBlock)
+        {
+            var commandFactory = DI.Factory.GetInstance<ICommandFactory<User>>();
 
             var command = commandFactory.CreateCommand();
 

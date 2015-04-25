@@ -10,7 +10,7 @@ using GoldenTicket.RuleEngine.AprioriRuler;
 using GoldenTicket.RuleEngine.Queue;
 using Parse;
 
-namespace GoldenTicket.Test.AprioriIntegration.Registration
+namespace GoldenTicket.RuleEngine.Service.Registration
 {
     public static class DIMapper
     {
@@ -51,6 +51,7 @@ namespace GoldenTicket.Test.AprioriIntegration.Registration
 
                 Component.For<IRuleDataProvider<ParseObject>>()
                          .ImplementedBy<RuleDataProvider>()
+
             };
 
             return registrations;
