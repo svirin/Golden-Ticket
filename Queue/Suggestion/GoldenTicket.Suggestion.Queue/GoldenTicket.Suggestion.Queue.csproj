@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C23B003B-4DBE-4DF7-9E1E-1AF6E1915D8E}</ProjectGuid>
+    <ProjectGuid>{EA9613B3-78B8-492F-A157-C5D48BCF04AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoldenTicket.RuleEngine.Queue</RootNamespace>
-    <AssemblyName>GoldenTicket.RuleEngine.Queue</AssemblyName>
+    <RootNamespace>GoldenTicket.Suggestion.Queue</RootNamespace>
+    <AssemblyName>GoldenTicket.Suggestion.Queue</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,9 +51,17 @@
     <Compile Include="QueueProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
+      <Project>{439caf15-3f8a-4e4a-9040-fc49eeff38a6}</Project>
+      <Name>GoldenTicket.ConfigurationManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Common\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
       <Name>GoldenTicket.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Data\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
+      <Project>{ab74ecd2-d29d-4806-811a-4afa3e8b1803}</Project>
+      <Name>GoldenTicket.DataProxy.Parse</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\Common\GoldenTicket.DI\GoldenTicket.DI.csproj">
       <Project>{b7487b46-0862-470f-b3ed-df3bd5e1cee5}</Project>

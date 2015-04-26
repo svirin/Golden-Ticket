@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C23B003B-4DBE-4DF7-9E1E-1AF6E1915D8E}</ProjectGuid>
+    <ProjectGuid>{5B57F179-71FA-4E1C-94D3-3148BAF3D8F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GoldenTicket.RuleEngine.Queue</RootNamespace>
-    <AssemblyName>GoldenTicket.RuleEngine.Queue</AssemblyName>
+    <RootNamespace>GoldenTicket.Logger.Log4Net</RootNamespace>
+    <AssemblyName>GoldenTicket.Logger.Log4Net</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,15 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Parse, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Externals\Parse\Parse.dll</HintPath>
-    </Reference>
-    <Reference Include="Parse.NetFx45, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Externals\Parse\Parse.NetFx45.dll</HintPath>
+      <HintPath>..\..\Externals\log4net\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,30 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueueProvider.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
-      <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
-      <Name>GoldenTicket.Data.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\GoldenTicket.DI\GoldenTicket.DI.csproj">
-      <Project>{b7487b46-0862-470f-b3ed-df3bd5e1cee5}</Project>
-      <Name>GoldenTicket.DI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Model\GoldenTicket.Model\GoldenTicket.Model.csproj">
-      <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
-      <Name>GoldenTicket.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\GoldenTicket.Queue.Interfaces\GoldenTicket.Queue.Interfaces.csproj">
-      <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
-      <Name>GoldenTicket.Queue.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Common\GoldenTicket.Utilities\GoldenTicket.Utilities.csproj">
-      <Project>{4769e21b-d5d0-4ce6-9f83-e37525a77484}</Project>
-      <Name>GoldenTicket.Utilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

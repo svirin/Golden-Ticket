@@ -6,7 +6,7 @@ using GoldenTicket.Data.Interfaces;
 using GoldenTicket.DataProxy.Parse;
 using GoldenTicket.Model;
 using GoldenTicket.Queue.Interfaces;
-using GoldenTicket.RuleEngine.AprioriCommander;
+using GoldenTicket.RuleEngine.AprioriRuler;
 using GoldenTicket.RuleEngine.Queue;
 using Parse;
 
@@ -42,6 +42,9 @@ namespace GoldenTicket.Test.ConcertIntegration.Registration
 
                 Component.For<ICommandFactory<UserRecientBlock>>()
                          .ImplementedBy<CommandFactory>(),
+
+                Component.For<ICommandFactory<User>>()
+                         .ImplementedBy<Suggestion.UserSuggester.CommandFactory>(),
 
                 Component.For<IQueueProvider<UserRecientBlock>>()
                          .ImplementedBy<QueueProvider>(),

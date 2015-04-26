@@ -35,11 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\Externals\Castle\Castle.Core.dll</HintPath>
+    <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\Castle\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\Externals\Castle\Castle.Windsor.dll</HintPath>
+    <Reference Include="Castle.Windsor, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\Castle\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\log4net\log4net.dll</HintPath>
     </Reference>
     <Reference Include="nunit.core">
       <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\nunit.core.dll</HintPath>
@@ -60,11 +66,13 @@
       <HintPath>..\..\packages\NUnitTestAdapter.2.0.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Parse">
-      <HintPath>..\Externals\Parse\Parse.dll</HintPath>
+    <Reference Include="Parse, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\Parse\Parse.dll</HintPath>
     </Reference>
-    <Reference Include="Parse.NetFx45">
-      <HintPath>..\Externals\Parse\Parse.NetFx45.dll</HintPath>
+    <Reference Include="Parse.NetFx45, Version=1.4.0.0, Culture=neutral, PublicKeyToken=ba48c3a442de616e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Externals\Parse\Parse.NetFx45.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -86,43 +94,43 @@
     <Compile Include="Registration\DIMapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.AprioriCommander\GoldenTicket.RuleEngine.AprioriCommander.csproj">
+    <ProjectReference Include="..\..\Commands\RuleEngine\GoldenTicket.RuleEngine.AprioriRuler\GoldenTicket.RuleEngine.AprioriRuler.csproj">
       <Project>{cca5fedd-3e43-426d-a934-2712f6fc33bd}</Project>
-      <Name>GoldenTicket.RuleEngine.AprioriCommander</Name>
+      <Name>GoldenTicket.RuleEngine.AprioriRuler</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
+    <ProjectReference Include="..\..\Common\GoldenTicket.Command.Interfaces\GoldenTicket.Command.Interfaces.csproj">
       <Project>{29a55ef8-f0d6-4b64-80de-b97112c1d260}</Project>
       <Name>GoldenTicket.Command.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
+    <ProjectReference Include="..\..\Common\GoldenTicket.ConfigurationManager\GoldenTicket.ConfigurationManager.csproj">
       <Project>{439caf15-3f8a-4e4a-9040-fc49eeff38a6}</Project>
       <Name>GoldenTicket.ConfigurationManager</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
+    <ProjectReference Include="..\..\Common\GoldenTicket.Data.Interfaces\GoldenTicket.Data.Interfaces.csproj">
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
       <Name>GoldenTicket.Data.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
+    <ProjectReference Include="..\..\Data\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
       <Project>{ab74ecd2-d29d-4806-811a-4afa3e8b1803}</Project>
       <Name>GoldenTicket.DataProxy.Parse</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.DI\GoldenTicket.DI.csproj">
+    <ProjectReference Include="..\..\Common\GoldenTicket.DI\GoldenTicket.DI.csproj">
       <Project>{b7487b46-0862-470f-b3ed-df3bd5e1cee5}</Project>
       <Name>GoldenTicket.DI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Interceptor\GoldenTicket.Interceptor.csproj">
+    <ProjectReference Include="..\..\Log\GoldenTicket.Interceptor\GoldenTicket.Interceptor.csproj">
       <Project>{cbf443a0-9cf0-45c5-9f2f-a18602e022f4}</Project>
       <Name>GoldenTicket.Interceptor</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Logger.Log4Net\GoldenTicket.Logger.Log4Net.csproj">
+    <ProjectReference Include="..\..\Log\GoldenTicket.Logger.Log4Net\GoldenTicket.Logger.Log4Net.csproj">
       <Project>{5b57f179-71fa-4e1c-94d3-3148baf3d8f3}</Project>
       <Name>GoldenTicket.Logger.Log4Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Model\GoldenTicket.Model.csproj">
+    <ProjectReference Include="..\..\Model\GoldenTicket.Model\GoldenTicket.Model.csproj">
       <Project>{df0fa868-0f20-4b2c-ba8a-e3843b82aa39}</Project>
       <Name>GoldenTicket.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\GoldenTicket.Queue.Interfaces\GoldenTicket.Queue.Interfaces.csproj">
+    <ProjectReference Include="..\..\Common\GoldenTicket.Queue.Interfaces\GoldenTicket.Queue.Interfaces.csproj">
       <Project>{59234bfb-1665-4bf9-8763-30ad7d134711}</Project>
       <Name>GoldenTicket.Queue.Interfaces</Name>
     </ProjectReference>

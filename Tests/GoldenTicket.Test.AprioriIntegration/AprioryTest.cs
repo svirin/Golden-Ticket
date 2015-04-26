@@ -42,7 +42,7 @@ namespace GoldenTicket.Test.AprioriIntegration
 
             queue.TryDequeue(out dataBlock);
 
-            Helper.ExecuteSuggestCommand(dataBlock);
+            Helper.ExecuteRuleCommand(dataBlock);
 
             /**
              *  Arrival result
@@ -104,7 +104,7 @@ namespace GoldenTicket.Test.AprioriIntegration
 
             queue.TryDequeue(out dataBlock);
 
-            Helper.ExecuteSuggestCommand(dataBlock);
+            Helper.ExecuteRuleCommand(dataBlock);
 
             /**
              *  Arrival result
@@ -165,7 +165,7 @@ namespace GoldenTicket.Test.AprioriIntegration
 
             queue.TryDequeue(out dataBlock);
 
-            Helper.ExecuteSuggestCommand(dataBlock);
+            Helper.ExecuteRuleCommand(dataBlock);
 
             /**
              *  Arrival result
