@@ -6,12 +6,14 @@ using GoldenTicket.Command.Interfaces;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Model;
 using Parse;
+using GoldenTicket.Crawler.Test.Crawlers;
 
 namespace GoldenTicket.Crawler.Test
 {
     public class Command : ICommand<Artist>
     {
         private IConcertDataProvider<ParseObject> _resultDataProvider;
+        private List<ICrawler> crawlers = new List<ICrawler>() { new SeatGeekCrawler() };
 
         public void ExecuteCommand(Artist item)
         {
@@ -35,26 +37,14 @@ namespace GoldenTicket.Crawler.Test
 
         public IEnumerable<Concert> CrawleByRequest(Artist item)
         {
-            var responses = new List<Concert>
-            {
-                new Concert 
-                {
-                    ConcertName = "Gala #" + item.UniqueID,
-                    Abstract = "Gala #" + item.UniqueID,
-                    Genre = "Gala #" + item.UniqueID,
-                    Artist = "Gala #" + item.UniqueID,
-                    Region = "Gala #" + item.UniqueID,
-                    Country = "Gala #" + item.UniqueID,
-                    Arena = "Gala #" + item.UniqueID,
-                    Description = "Gala #" + item.UniqueID,
-                    DateStart = DateTime.MinValue,
-                    DateEnd = DateTime.MinValue,
-                    CrawlerName = "Test"
-                }
-            };
+            var responses = new List<Concert>(); 
+            DateTime endDate = new DateTime();
+            endDate.AddMonths(3);
 
-            Thread.Sleep(1000);
-            //LogFactory.Log.InfoFormat("Request item {0}", requestItem.UniqueID);
+            foreach(ICrawler crawler in crawlers)
+            {
+                responses.AddRange(crawler.GetConcerts(item.Name, endDate));
+            }
 
             return responses;
         }
