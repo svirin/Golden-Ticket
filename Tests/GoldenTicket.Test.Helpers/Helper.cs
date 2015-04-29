@@ -15,9 +15,7 @@ namespace GoldenTicket.Test.Helpers
         public static Rule LoadRule(string concertId)
         {
             var dataProvider = DI.Factory.GetInstance<IRuleDataProvider<ParseObject>>();
-
             var rule = dataProvider.GetRuleBySource(concertId);
-
             return rule;
         }
         public static void ExecuteRuleCommand(UserRecientBlock dataBlock)
@@ -31,9 +29,7 @@ namespace GoldenTicket.Test.Helpers
         public static void ExecuteSuggestCommand(User dataBlock)
         {
             var commandFactory = DI.Factory.GetInstance<ICommandFactory<User>>();
-
             var command = commandFactory.CreateCommand();
-
             command.ExecuteCommand(dataBlock);
         }
         public static void EnqueueData(ConcurrentQueue<UserRecientBlock> queue)
@@ -186,17 +182,22 @@ namespace GoldenTicket.Test.Helpers
         public static List<Concert> LoadSuggestByConcert(string concertId)
         {
             var dataProvider = DI.Factory.GetInstance<IConcertDataProvider<ParseObject>>();
-
             var concerts = dataProvider.GetConcertsSuggestedToConcert(concertId).ToList();
-
             return concerts;
         }
         public static List<Concert> LoadSuggestByUser(string username)
         {
             var dataProvider = DI.Factory.GetInstance<IConcertDataProvider<ParseObject>>();
-
+            
             var concerts = dataProvider.GetConcertsSuggestedToUser(username).ToList();
-
+            
+            
+            return concerts;
+        }
+        public static List<Suggest> LoadSuggests()
+        {
+            var dataProvider = DI.Factory.GetInstance<ISuggestDataProvider<ParseObject>>();
+            var concerts = dataProvider.GetSuggests().ToList();
             return concerts;
         }
         public static void DeleteUsers(List<User> users)
@@ -218,6 +219,15 @@ namespace GoldenTicket.Test.Helpers
         {
             var dataProvider = DI.Factory.GetInstance<IRuleDataProvider<ParseObject>>();
             dataProvider.DeleteMany(rules);
+        }
+        public static void DeleteSuggests()
+        {
+            List<Suggest> suggests = LoadSuggests();
+            if (suggests.Count > 0)
+            {
+                var dataProvider = DI.Factory.GetInstance<ISuggestDataProvider<ParseObject>>();
+                dataProvider.DeleteMany(suggests);
+            }
         }
     }
 }

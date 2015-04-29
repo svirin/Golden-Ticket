@@ -69,10 +69,6 @@
     <Compile Include="CommandFactory.cs" />
     <Compile Include="Crawlers\ICrawler.cs" />
     <Compile Include="Crawlers\SeatGeekCrawler.cs" />
-    <Compile Include="netfx\System\Guard.cs" />
-    <Compile Include="netfx\System\ISerializer.cs" />
-    <Compile Include="netfx\System\JsonSerializer.cs" />
-    <Compile Include="netfx\System\SerializerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -42,6 +42,17 @@ namespace GoldenTicket.DataProxy.Parse
             return suggestionResultSet;
         }
 
+        public IEnumerable<Suggest> GetSuggests()
+        {
+            var query = from suggest in ParseObject.GetQuery("Suggest")
+                        orderby suggest.Get<string>("UniqueID"), suggest.Get<string>("UniqueID")
+                        select suggest;
+
+            var result = query.FindAsync().Result;
+            var suggestionResultSet = result.Select(Convert);
+            return suggestionResultSet;
+        }
+
         #endregion
 
         #region Save
@@ -70,9 +81,7 @@ namespace GoldenTicket.DataProxy.Parse
         public void Delete(Suggest item)
         {
             var prsUser = Convert(item);
-
             prsUser.DeleteAsync().Wait();
-
             LogFactory.Log.InfoFormat("Suggest #{0} successfuly deleted", item.UniqueID);
         }
 
@@ -106,12 +115,15 @@ namespace GoldenTicket.DataProxy.Parse
 
         public ParseObject Convert(Suggest item)
         {
-            var concert = new ParseObject("Suggest");
+            var suggest = new ParseObject("Suggest")
+            {
+                ObjectId = item.UniqueID
+            };
 
-            concert["Username"] = item.Username.ToCustomLower();
-            concert["ConcertId"] = item.ConcertId;
+            suggest["Username"] = item.Username.ToCustomLower();
+            suggest["ConcertId"] = item.ConcertId;
 
-            return concert;
+            return suggest;
         }
 
         public Suggest Convert(ParseObject item)

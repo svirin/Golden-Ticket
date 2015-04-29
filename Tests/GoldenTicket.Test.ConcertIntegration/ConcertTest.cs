@@ -312,7 +312,6 @@ namespace GoldenTicket.Test.ConcertIntegration
                 {concert2} => {concert1} (support: 80%, confidence: 100%)
              */
 
-
             var rule1 = Helper.LoadRule(_concerts[0].UniqueID);
             var rule2 = Helper.LoadRule(_concerts[1].UniqueID);
 
@@ -336,6 +335,7 @@ namespace GoldenTicket.Test.ConcertIntegration
             Helper.DeleteConcerts(_concerts);
             Helper.DeleteRecients(_recients);
             Helper.DeleteRules(_rules);
+            Helper.DeleteSuggests();
         }
     }
 }
