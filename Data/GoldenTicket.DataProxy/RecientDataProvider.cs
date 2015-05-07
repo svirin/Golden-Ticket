@@ -53,6 +53,11 @@ namespace GoldenTicket.DataProxy.Parse
             return recientResultSet;
         }
 
+        public IEnumerable<Recient> GetMany()
+        {
+            return null;
+        }
+
         #endregion
 
         #region Save

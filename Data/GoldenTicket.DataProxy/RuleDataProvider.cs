@@ -37,6 +37,11 @@ namespace GoldenTicket.DataProxy.Parse
             return convertedResult;
         }
 
+        public IEnumerable<Rule> GetMany()
+        {
+            return null;
+        }
+
         #endregion
 
         #region Save
@@ -87,14 +92,14 @@ namespace GoldenTicket.DataProxy.Parse
 
         #region IsExist
 
-        public bool IsRuleExisted(string sourceConcert)
+        public string IsRuleExisted(string sourceConcert)
         {
             var query = from ruleResult in ParseObject.GetQuery("Rule")
                         where ruleResult.Get<string>("SourceConcertId") == sourceConcert
                         select ruleResult;
 
             var result = query.FindAsync().Result;
-            return result.Any();
+            return result.Any() ? result.First().ObjectId : string.Empty;
         }
 
         #endregion

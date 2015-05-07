@@ -1,6 +1,5 @@
 ﻿using System.ServiceProcess;
 using System.Threading;
-using Castle.Core.Resource;
 using GoldenTicket.ConfigurationManager;
 using GoldenTicket.Model;
 using Parse;

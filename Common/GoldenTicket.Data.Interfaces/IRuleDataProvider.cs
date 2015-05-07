@@ -8,7 +8,7 @@ namespace GoldenTicket.Data.Interfaces
     {
         Rule GetRuleBySource(string concertId);
         IEnumerable<Rule> GetRulesBySources(IEnumerable<string> sourcesIds);
-        bool IsRuleExisted(string sourceConcert);
+        string IsRuleExisted(string sourceConcert);
         void Save(Rule item);
         void UpdateRates(Rule item);
         void Delete(Rule item);

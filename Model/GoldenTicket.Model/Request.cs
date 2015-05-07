@@ -19,6 +19,6 @@ namespace GoldenTicket.Model
         public string Username { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
-        public RequestStatus Status { get; set; }
+        public RequestStatus IsActivated { get; set; }
     }
 }

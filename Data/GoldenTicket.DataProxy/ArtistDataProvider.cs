@@ -43,6 +43,11 @@ namespace GoldenTicket.DataProxy.Parse
             return artistsList;
         }
 
+        public IEnumerable<Artist> GetMany()
+        {
+            return GetAcctualArtists();
+        }
+
         #endregion
 
         #region Save

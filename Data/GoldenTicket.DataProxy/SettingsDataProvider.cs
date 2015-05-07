@@ -50,6 +50,11 @@ namespace GoldenTicket.DataProxy.Parse
 
         }
 
+        public IEnumerable<SettingsItem> GetMany()
+        {
+            return null;
+        }
+
         public void Save(SettingsItem item)
         {
             var prsConcert = Convert(item);

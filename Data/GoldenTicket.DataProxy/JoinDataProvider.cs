@@ -41,6 +41,11 @@ namespace GoldenTicket.DataProxy.Parse
             return visitResultSet;
         }
 
+        public IEnumerable<Join> GetMany()
+        {
+            return null;
+        }
+
         #endregion
 
         #region Save

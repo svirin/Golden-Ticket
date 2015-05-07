@@ -407,7 +407,7 @@ namespace GoldenTicket.Creator
                     City = "City " + index,
                     DateStart = DateTime.Now,
                     DateEnd = DateTime.Now,
-                    Status = RequestStatus.NotActivated,
+                    IsActivated = RequestStatus.NotActivated,
                     Username = "vasiliy"
                 });
             }

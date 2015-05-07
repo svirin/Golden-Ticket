@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading;
 using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Model;
@@ -42,6 +41,11 @@ namespace GoldenTicket.DataProxy.Parse
 
             var usersSet = resultSet.Select(Convert);
             return usersSet;
+        }
+
+        public IEnumerable<User> GetMany()
+        {
+            return GetAcctualUsers();
         }
 
         #endregion
@@ -108,7 +112,7 @@ namespace GoldenTicket.DataProxy.Parse
                 ObjectId = item.UniqueID
             };
 
-            user["Username"] = item.Username.ToCustomLower();
+            user["username"] = item.Username.ToCustomLower();
 
             return user;
         }
@@ -118,7 +122,7 @@ namespace GoldenTicket.DataProxy.Parse
             var user = new User
             {
                 UniqueID = item.ObjectId,
-                Username = item.Get<string>("Username")
+                Username = item.ContainsKey("username") ? item.Get<string>("username") : string.Empty
             };
 
             return user;

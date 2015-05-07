@@ -7,7 +7,7 @@ namespace GoldenTicket.Crawler.Test
     {
         public ICommand<Artist> CreateCommand()
         {
-            return new Command();
+            return new Test.Command();
         }
     }
 }

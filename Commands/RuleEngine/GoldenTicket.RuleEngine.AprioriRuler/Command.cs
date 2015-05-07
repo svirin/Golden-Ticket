@@ -31,14 +31,16 @@ namespace GoldenTicket.RuleEngine.AprioriRuler
 
                     var ruleToSave = new Rule
                     {
-                        SourceConcertId = rule.X.Single(), 
+                        SourceConcertId = string.Join(",", rule.X),
                         Support = rule.Support,
-                        Confidence = rule.Confidence, 
+                        Confidence = rule.Confidence,
                         TargetConcertIds = string.Join(",", rule.Y)
                     };
 
-                    if (dataProvider.IsRuleExisted(ruleToSave.SourceConcertId))
+                    var identity = dataProvider.IsRuleExisted(ruleToSave.SourceConcertId);
+                    if (!string.IsNullOrEmpty(identity))
                     {
+                        ruleToSave.UniqueID = identity;
                         dataProvider.UpdateRates(ruleToSave);
                     }
                     else

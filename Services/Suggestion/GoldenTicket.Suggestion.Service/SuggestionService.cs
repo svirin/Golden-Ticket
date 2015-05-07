@@ -8,7 +8,7 @@ namespace GoldenTicket.Suggestion.Service
 {
     public partial class SuggestionService : ServiceBase
     {
-        private Scheduler.Scheduler<UserRecientBlock> _scheduler;
+        private Scheduler.Scheduler<User> _scheduler;
 
         public SuggestionService()
         {
@@ -24,7 +24,7 @@ namespace GoldenTicket.Suggestion.Service
             int period = Config.CurrentContext.AppSettings.SuggestionPeriod;
             int workerAmounts = Config.CurrentContext.AppSettings.SuggestionWorkersAmount;
 
-            _scheduler = new Scheduler.Scheduler<UserRecientBlock>(workerAmounts, dueTo, period);
+            _scheduler = new Scheduler.Scheduler<User>(workerAmounts, dueTo, period);
             _scheduler.Start();
         }
 

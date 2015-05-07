@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using GoldenTicket.Command.Interfaces;
+using GoldenTicket.Data.Interfaces;
 using GoldenTicket.Logger.Log4Net;
 using GoldenTicket.Queue.Interfaces;
 
@@ -19,6 +20,7 @@ namespace GoldenTicket.Scheduler
         private readonly Timer _tmrTicker;
         private readonly IQueueProvider<TEntity> _queueProvider;
         private readonly ICommandFactory<TEntity> _commandFactory;
+
         private readonly ConcurrentQueue<TEntity> _bufferQueue;
         private readonly List<Worker<TEntity>> _workers;
 

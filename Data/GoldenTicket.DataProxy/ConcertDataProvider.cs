@@ -66,6 +66,11 @@ namespace GoldenTicket.DataProxy.Parse
             return concerts;
         }
 
+        public IEnumerable<Concert> GetMany()
+        {
+            return GetAll();
+        }
+
         //public IEnumerable<Concert> GetSuggestsToUser(string username)
         //{
         //    var recientProvider = DI.Factory.GetInstance<IRecientDataProvider<ParseObject>>();

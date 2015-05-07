@@ -43,6 +43,11 @@ namespace GoldenTicket.DataProxy.Parse
             return liketSet;
         }
 
+        public IEnumerable<Like> GetMany()
+        {
+            return null;
+        }
+
         #endregion
 
         #region Save

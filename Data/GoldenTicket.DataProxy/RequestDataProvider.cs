@@ -31,12 +31,11 @@ namespace GoldenTicket.DataProxy.Parse
             return item;
         }
 
-
         /// <summary>Select only active requests</summary>
         public IEnumerable<Request> GetActivatedRequests()
         {
             var query = from request in ParseObject.GetQuery("Request")
-                        where request.Get<int>("Status") == (int)RequestStatus.NotActivated
+                        where request.Get<int>("IsActivated") == (int)RequestStatus.NotActivated
                         select request;
 
             var task = query.FindAsync();
@@ -44,6 +43,11 @@ namespace GoldenTicket.DataProxy.Parse
 
             var requestsSet = resultSet.Select(Convert);
             return requestsSet;
+        }
+
+        public IEnumerable<Request> GetMany()
+        {
+            return GetActivatedRequests();
         }
 
         #endregion
@@ -65,7 +69,7 @@ namespace GoldenTicket.DataProxy.Parse
         {
             var prsConcert = ParseObject.CreateWithoutData("Request", item.UniqueID);
 
-            prsConcert["Status"] = (int)RequestStatus.Activated;
+            prsConcert["IsActivated"] = (int)RequestStatus.Activated;
 
             prsConcert.SaveAsync().Wait();
 
@@ -105,7 +109,7 @@ namespace GoldenTicket.DataProxy.Parse
             request["City"] = item.City.ToCustomLower();
             request["DateStart"] = item.DateStart;
             request["DateEnd"] = item.DateEnd;
-            request["Status"] = (int)item.Status;
+            request["Status"] = (int)item.IsActivated;
             
             return request;
         }
@@ -115,15 +119,14 @@ namespace GoldenTicket.DataProxy.Parse
             var request = new Request
             {
                 UniqueID = item.ObjectId,
-                DateCreated = item.Get<DateTime>("DateCreated"),
-                Genre = item.Get<string>("Genre"),
-                Username = item.Get<string>("Username"),
-                Artist = item.Get<string>("Artist"),
-                Country = item.Get<string>("Country"),
-                DateStart = item.Get<DateTime>("DateStart"),
-                DateEnd = item.Get<DateTime>("DateEnd"),
-                Status = (RequestStatus)item.Get<int>("Status")
-                
+                DateCreated = item.ContainsKey("DateCreated") ? item.Get<DateTime>("DateCreated") : DateTime.MinValue,
+                Genre = item.ContainsKey("Genre") ? item.Get<string>("Genre") : string.Empty,
+                Username = item.ContainsKey("Username") ? item.Get<string>("Username") : string.Empty,
+                Artist = item.ContainsKey("Artist") ? item.Get<string>("Artist") : string.Empty,
+                Country = item.ContainsKey("Country") ? item.Get<string>("Country") : string.Empty,
+                DateStart = item.ContainsKey("DateStart") ? item.Get<DateTime>("DateStart") : DateTime.MinValue,
+                DateEnd = item.ContainsKey("DateEnd") ? item.Get<DateTime>("DateEnd") : DateTime.MinValue,
+                IsActivated = item.ContainsKey("IsActivated") ? (RequestStatus)item.Get<int>("IsActivated") : RequestStatus.NotActivated
             };
 
             return request;
