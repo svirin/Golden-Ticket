@@ -13,13 +13,13 @@ namespace GoldenTicket.Suggestion.Queue
     {
         public void Enqueue(ConcurrentQueue<User> queue)
         {
-            var dataProvider = DI.Factory.GetInstance<IUserDataProvider<ParseObject>>();
+           var dataProvider = DI.Factory.GetInstance<IUserDataProvider<ParseObject>>();
 
-            var artists = dataProvider.GetAcctualUsers().ToList();
+            var users = dataProvider.GetAcctualUsers().ToList();
 
             int maxParallelTasks = Config.CurrentContext.AppSettings.SuggestionQueueMaxParallelism;
 
-            Parallel.ForEach(artists,
+            Parallel.ForEach(users,
                 new ParallelOptions { MaxDegreeOfParallelism = maxParallelTasks },
                 queue.Enqueue);
         }

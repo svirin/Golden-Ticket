@@ -1,4 +1,5 @@
 ﻿using System;
+using GoldenTicket.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using GoldenTicket.Command.Interfaces;
@@ -16,11 +17,37 @@ namespace GoldenTicket.Suggestion.UserSuggester
 
             var rules = GetRulesByRecients(recients);
 
-            var oldSuggests = GetOldSuggestedConcerts(item.Username);
+            if (rules.Count() > 0)
+            {
+                var oldSuggests = GetOldSuggestedConcerts(item.Username).ToList();
 
-            SaveUserSuggests(rules, item.Username);
+                var newSuggests = ConvertRulesToSuggests(rules, item.Username).ToList();
 
-            DeleteOldSuggests(oldSuggests);
+                RemoveDuplicated(oldSuggests, newSuggests);
+
+                SaveUserSuggests(newSuggests);
+
+                //DeleteOldSuggests(oldSuggests);
+            }
+        }
+
+        private void RemoveDuplicated(List<Suggest> oldSuggests, List<Suggest> newSuggests)
+        {
+            var newOldSuggests = new List<Suggest>();
+
+            foreach (var oldSuggest in oldSuggests)
+            {
+                if (newSuggests.Any(suggest => suggest.ConcertId.Equals(oldSuggest.ConcertId)))
+                {
+                    newSuggests.Remove(newSuggests.First(suggest => suggest.ConcertId.Equals(oldSuggest.ConcertId)));
+                }
+                else
+                {
+                    newOldSuggests.Add(oldSuggest);
+                }
+            }
+
+            oldSuggests = newOldSuggests;
         }
 
         private void DeleteOldSuggests(IEnumerable<Suggest> oldSuggests)
@@ -30,10 +57,15 @@ namespace GoldenTicket.Suggestion.UserSuggester
             dataProvider.DeleteMany(oldSuggests);
         }
 
-        private void SaveUserSuggests(IEnumerable<Rule> rules, string username)
+        private void SaveUserSuggests(IEnumerable<Suggest> newSuggests)
         {
             var dataProvider = DI.Factory.GetInstance<ISuggestDataProvider<ParseObject>>();
 
+            dataProvider.SaveMany(newSuggests);
+        }
+
+        private IEnumerable<Suggest> ConvertRulesToSuggests(IEnumerable<Rule> rules, string username) 
+        {
             var rulesTargetIdents = rules.Select(item => item.TargetConcertIds);
             var rulesTargetIdentsAsOne = string.Join(",", rulesTargetIdents);
             var concertIds = rulesTargetIdentsAsOne.Split(new[] { "," }, StringSplitOptions.None);
@@ -41,19 +73,19 @@ namespace GoldenTicket.Suggestion.UserSuggester
             var suggests = concertIds.Select(concertId =>
                 new Suggest
                 {
-                    ConcertId = concertId, 
+                    ConcertId = concertId,
                     Username = username
 
                 }).ToList();
 
-            dataProvider.SaveMany(suggests);
+            return suggests.DistinctBy(suggest => suggest.ConcertId);
         }
 
         private IEnumerable<Suggest> GetOldSuggestedConcerts(string username)
         {
             var dataProvider = DI.Factory.GetInstance<ISuggestDataProvider<ParseObject>>();
 
-            var suggestConcerts = dataProvider.GetSuggestByUser(username);
+            var suggestConcerts = dataProvider.GetSuggestByUser(username).ToList();
 
             return suggestConcerts;
         }

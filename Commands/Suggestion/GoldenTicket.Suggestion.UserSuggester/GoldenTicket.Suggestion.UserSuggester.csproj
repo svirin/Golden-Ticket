@@ -72,6 +72,10 @@
       <Project>{26614343-a079-44e5-85be-a8309609b057}</Project>
       <Name>GoldenTicket.Data.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\GoldenTicket.Utilities\GoldenTicket.Utilities.csproj">
+      <Project>{4769e21b-d5d0-4ce6-9f83-e37525a77484}</Project>
+      <Name>GoldenTicket.Utilities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Data\GoldenTicket.DataProxy\GoldenTicket.DataProxy.Parse.csproj">
       <Project>{ab74ecd2-d29d-4806-811a-4afa3e8b1803}</Project>
       <Name>GoldenTicket.DataProxy.Parse</Name>
