@@ -10,7 +10,7 @@ using GoldenTicket.Model;
 
 namespace GoldenTicket.Crawler.Test.Crawlers
 {
-    class SeatGeekCrawler : ICrawler
+    public class SeatGeekCrawler : ICrawler
     {
         private const string URL = "https://api.seatgeek.com/2/events";
 
